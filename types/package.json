@@ -1,0 +1,12 @@
+{
+  "name": "mf-app-types",
+  "version": "1.0.0",
+  "description": "Type declarations for showcase project",
+  "main": "index.js",
+  "license": "MIT",
+  "types": "index.d.ts",
+  "registry": "https://registry.npmjs.org/",
+  "dependencies": {
+    "@types/react": "^18.3.5"
+  }
+}
