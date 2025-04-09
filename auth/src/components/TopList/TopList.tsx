@@ -2,7 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher } from "@utils/fetcher";
 import ListItem from "@components/ListItem";
-import { Title, Wave } from "ui/components";
+import { Title, Wave } from "core/components";
 
 interface ITopListProps {
   mbid: string;

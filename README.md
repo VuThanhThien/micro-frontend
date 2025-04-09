@@ -4,9 +4,9 @@ This project demonstrates the use of micro frontends in a music app built using 
 
 ## Project Structure
 
-- **artist-list**: Displays a list of top artists using the Last.fm API.
-- **artist-details**: Displays detailed information about a selected artist.
-- **ui**: Contains reusable UI components (e.g., title, loading indicator) shared across the applications.
+- **dashboard**: Displays a list of top artists using the Last.fm API.
+- **auth**: Displays detailed information about a selected artist.
+- **core**: Contains reusable UI components (e.g., title, loading indicator) shared across the applications.
 - **types**: Shared TypeScript types used across all applications.
 
 ## Features

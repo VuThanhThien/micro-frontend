@@ -1,5 +1,5 @@
 // ArtistDetails MF
-declare module "artistDetails/ArtistDetails" {
+declare module "auth/ArtistDetails" {
   import React from "react";
 
   interface ArtistDetailsProps {
@@ -12,7 +12,7 @@ declare module "artistDetails/ArtistDetails" {
 }
 
 // UI MF
-declare module "ui/components" {
+declare module "core/components" {
   import React from "react";
 
   const Wave: React.FC;

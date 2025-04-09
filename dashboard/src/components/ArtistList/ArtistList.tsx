@@ -7,8 +7,8 @@ import { fetcher } from "@utils/fetcher";
 import { filterByPhoto } from "utils/filterByPhoto";
 
 import ArtistCard from "@components/ArtistCard";
-import ArtistDetails from "artistDetails/ArtistDetails";
-import { Wave, Title } from 'ui/components';
+import ArtistDetails from "auth/ArtistDetails";
+import { Wave, Title } from 'core/components';
 
 interface IArtistListProps {
   children?: React.ReactNode;

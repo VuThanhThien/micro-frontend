@@ -28,5 +28,5 @@ This is the host application that displays a list of top artists fetched from th
 This application integrates the ArtistDetails and UI micro frontends via Module Federation.
 
 Remotes:
-- artistDetails: http://localhost:3001/assets/remoteEntry.js
-- ui: http://localhost:3002/assets/remoteEntry.js
+- auth: http://localhost:3001/assets/remoteEntry.js
+- core: http://localhost:3002/assets/remoteEntry.js

@@ -1,5 +1,11 @@
 packages:
-  - 'artist-list'
-  - 'artist-details'
-  - 'ui'
-  - 'types' 
+  - dashboard
+  - auth
+  - core
+  - types
+
+ignoredBuiltDependencies:
+  - core-js
+
+onlyBuiltDependencies:
+  - esbuild

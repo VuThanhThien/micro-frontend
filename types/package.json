@@ -1,6 +1,6 @@
 {
   "name": "mf-app-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Type declarations for showcase project",
   "main": "index.js",
   "license": "MIT",

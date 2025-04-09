@@ -9,26 +9,18 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     ModuleFederationPlugin({
-      name: "artistList",
-      remotes: {
-        ui: "http://localhost:3002/assets/remoteEntry.js",
-        artistDetails: "http://localhost:3001/assets/remoteEntry.js",
+      name: "core",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./components": "./src/components"
       },
-      shared: ["react", "react-dom", "axios", "swr"]
-    })
+      shared: ["react", "react-dom"],
+    }),
   ],
   build: {
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
-    modulePreload: false
-  },
-  preview: {
-    port: 3000,
-    strictPort: true
-  },
-  server: {
-    port: 3000,
-    strictPort: true
+    
   }
-});
+})

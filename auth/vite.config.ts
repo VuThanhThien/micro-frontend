@@ -9,13 +9,13 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     ModuleFederationPlugin({
-      name: "artistDetails",
+      name: "auth",
       filename: "remoteEntry.js",
       exposes: {
         "./ArtistDetails": "./src/components/ArtistDetails"
       },
       remotes: {
-        ui: "http://localhost:3002/assets/remoteEntry.js"
+        core: "http://localhost:3002/assets/remoteEntry.js"
       },
       shared: ["react", "react-dom", "swr"],
     }),

@@ -9,18 +9,26 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     ModuleFederationPlugin({
-      name: "ui",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./components": "./src/components"
+      name: "dashboard",
+      remotes: {
+        core: "http://localhost:3002/assets/remoteEntry.js",
+        auth: "http://localhost:3001/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom"],
-    }),
+      shared: ["react", "react-dom", "axios", "swr"]
+    })
   ],
   build: {
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
-    
+    modulePreload: false
+  },
+  preview: {
+    port: 3000,
+    strictPort: true
+  },
+  server: {
+    port: 3000,
+    strictPort: true
   }
-})
+});
