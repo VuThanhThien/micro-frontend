@@ -50,7 +50,22 @@ This project demonstrates the use of micro frontends in a dashboard application 
    ```
 
 3. Run development servers:
+
+   Open terminals,
    ```bash
+   cd remote-components
+   pnpm build
+   pnpm preview
+   ```
+
+   ```bash
+   cd remote-auth
+   pnpm build
+   pnpm preview
+   ```
+
+   ```bash
+   cd host-dashboard
    pnpm dev
    ```
 
