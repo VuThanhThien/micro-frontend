@@ -1,18 +1,4 @@
-// ArtistDetails MF
-declare module "auth/ArtistDetails" {
-  import React from "react";
-
-  interface ArtistDetailsProps {
-    mbid: string;
-    imgUrl: string | null;
-  }
-
-  const ArtistDetails: React.FC<ArtistDetailsProps>;
-  export default ArtistDetails;
-}
-
-// UI MF
-declare module "core/components" {
+declare module "remoteComponents/components" {
   import React from "react";
 
   const Wave: React.FC;
@@ -24,28 +10,74 @@ declare module "core/components" {
 
   const Title: React.FC<ITitleProps>;
 
-  export { Wave, Title };
+  const Footer: React.FC;
 }
 
-// Last.fm interfaces
-type ImageSize = "small" | "medium" | "large" | "extralarge" | "mega";
+declare module "remoteComponents/pages" {
+  import React from "react";
 
-type Images = {
-  size: ImageSize;
-  "#text": string;
-}[];
-
-interface Artist {
-  name: string;
-  image: Images;
-  listeners: number;
-  mbid: string;
-  url: string;
+  const Forbidden: React.FC;
+  const NotFound: React.FC;
+  const UnderConstructions: React.FC;
 }
 
-interface MusicEntity {
-  url: string;
-  image: Images;
-  name: string;
-  playcount: number;
+declare module "remoteComponents/contexts" {
+  import React from "react";
+
+  interface SnackbarContextInterface {
+    error: (newMessage: string) => void;
+    success: (newMessage: string) => void;
+  }
+
+  const SnackbarContext: React.Context<SnackbarContextInterface>;
+
+  type SnackbarProviderProps = {
+    children: React.ReactNode;
+  };
+
+  const SnackbarProvider: ({ children }: SnackbarProviderProps) => JSX.Element;
+
+  function useSnackbar(): SnackbarContextInterface;
+}
+
+// MF auth
+declare module "remoteAuth/pages" {
+  const Register: () => JSX.Element;
+  const ForgotPassword: () => JSX.Element;
+  const Login: () => JSX.Element;
+  const ForgotPasswordSubmit: () => JSX.Element;
+}
+
+declare module "remoteAuth/contexts" {
+  import React from "react";
+
+  interface AuthContextInterface {
+    hasRole: (roles?: string[]) => {};
+    isLoggingIn: boolean;
+    isLoggingOut: boolean;
+    login: (email: string, password: string) => Promise<any>;
+    logout: () => Promise<any>;
+    userInfo?: UserInfo;
+  }
+
+  const AuthContext: React.Context<AuthContextInterface>;
+
+  type AuthProviderProps = {
+    children?: React.ReactNode;
+  };
+
+  const AuthProvider: ({ children }: AuthProviderProps) => JSX.Element;
+
+  function useAuth(): AuthContextInterface;
+}
+
+interface UserInfo {
+  id: string;
+  avatar?: string;
+  email: string;
+  firstName: string;
+  job: string;
+  lastName: string;
+  progress: number;
+  role: string;
 }
