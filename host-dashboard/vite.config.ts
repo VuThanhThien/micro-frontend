@@ -62,16 +62,18 @@ export default defineConfig({
   build: {
     target: "esnext",
     minify: false,
-    cssCodeSplit: false,
-    modulePreload: false,
+    cssCodeSplit: false
   },
   preview: {
     port: 3000,
     strictPort: true,
+    host: true, 
+    open: true,
   },
   server: {
     port: 3000,
     strictPort: true,
     open: true,
+    host: true,
   },
 });

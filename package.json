@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
+    "setup": "chmod +x scripts/setup-env.sh && ./scripts/setup-env.sh",
+    "dev": "pnpm setup && pnpm -r --parallel dev",
+    "build": "pnpm setup && pnpm -r build",
     "preview": "pnpm -r --parallel preview",
     "clean": "pnpm -r clean"
   },

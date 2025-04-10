@@ -5,6 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/",
   plugins: [
     react(),
     tsconfigPaths(),
@@ -37,14 +38,15 @@ export default defineConfig({
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
-    modulePreload: false,
   },
   preview: {
     port: 3001,
     strictPort: true,
+    host: true, // Allow external connections
   },
   server: {
     port: 3001,
     strictPort: true,
+    host: true, // Allow external connections
   },
 });

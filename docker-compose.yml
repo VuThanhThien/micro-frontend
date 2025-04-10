@@ -1,0 +1,78 @@
+services:
+  types:
+    build:
+      context: .
+      dockerfile: types/Dockerfile
+    volumes:
+      - types-volume:/app/types
+
+  remote-components:
+    build:
+      context: .
+      dockerfile: remote-components/Dockerfile
+      args:
+        - VITE_APP_NAME=${VITE_COMPONENTS_APP_NAME:-Components Library}
+        - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
+    env_file:
+      - ./remote-components/.env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3002:80"
+    volumes:
+      - types-volume:/app/types
+    depends_on:
+      - types
+    networks:
+      - micro-frontend-network
+
+  remote-auth:
+    build:
+      context: .
+      dockerfile: remote-auth/Dockerfile
+      args:
+        - VITE_APP_NAME=${VITE_AUTH_APP_NAME:-Auth Service}
+        - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
+    env_file:
+      - ./remote-auth/.env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3001:80"
+    volumes:
+      - types-volume:/app/types
+    depends_on:
+      - types
+      - remote-components
+    networks:
+      - micro-frontend-network
+
+  host-dashboard:
+    build:
+      context: .
+      dockerfile: host-dashboard/Dockerfile
+      args:
+        - VITE_APP_NAME=${VITE_DASHBOARD_APP_NAME:-Micro Front-end}
+        - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
+    env_file:
+      - ./host-dashboard/.env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:80"
+    volumes:
+      - types-volume:/app/types
+    depends_on:
+      - types
+      - remote-components
+      - remote-auth
+    networks:
+      - micro-frontend-network
+
+networks:
+  micro-frontend-network:
+    driver: bridge
+
+volumes:
+  types-volume:
+    name: micro-frontend-types 

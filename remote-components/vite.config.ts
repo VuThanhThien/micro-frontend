@@ -6,6 +6,7 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/",  // Ensure base path is set correctly
   plugins: [
     react(),
     tsconfigPaths(),
@@ -40,14 +41,17 @@ export default defineConfig({
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
-    modulePreload: false,
+    outDir: "dist",
+    assetsDir: "assets",
   },
   preview: {
     port: 3002,
     strictPort: true,
+    host: true, // Allow external connections
   },
   server: {
     port: 3002,
     strictPort: true,
+    host: true, // Allow external connections
   },
 });
