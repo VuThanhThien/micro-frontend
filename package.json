@@ -4,9 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -r --parallel dev",
-    "dev:dashboard": "pnpm --filter dashboard dev",
-    "dev:auth": "pnpm --filter auth dev",
-    "dev:core": "pnpm --filter core dev",
     "build": "pnpm -r build",
     "preview": "pnpm -r --parallel preview",
     "clean": "pnpm -r clean"

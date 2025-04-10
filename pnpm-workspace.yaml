@@ -1,7 +1,7 @@
 packages:
-  - dashboard
-  - auth
-  - core
+  - host-dashboard
+  - remote-auth
+  - remote-components
   - types
 
 ignoredBuiltDependencies:
