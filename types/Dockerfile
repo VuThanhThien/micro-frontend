@@ -20,6 +20,3 @@ COPY types ./types
 
 # Create volume directory for type definitions
 VOLUME /app/types
-
-# Keep container running
-CMD ["tail", "-f", "/dev/null"]

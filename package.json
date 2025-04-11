@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "setup": "chmod +x scripts/setup-env.sh && ./scripts/setup-env.sh",
+    "setup-env": "chmod +x scripts/setup-env.sh && sh scripts/setup-env.sh",
     "dev": "pnpm setup && pnpm -r --parallel dev",
     "build": "pnpm setup && pnpm -r build",
     "preview": "pnpm -r --parallel preview",

@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# Get the absolute path of the script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
 # Function to copy example env file if .env doesn't exist
 setup_env() {
     local service=$1
-    if [ ! -f "${service}/.env" ] && [ -f "${service}/.env.example" ]; then
+    if [ ! -f "${PROJECT_ROOT}/${service}/.env" ] && [ -f "${PROJECT_ROOT}/${service}/.env.example" ]; then
         echo "Creating .env file for ${service}"
-        cp "${service}/.env.example" "${service}/.env"
+        cp "${PROJECT_ROOT}/${service}/.env.example" "${PROJECT_ROOT}/${service}/.env"
     fi
 }
 
@@ -13,9 +17,3 @@ setup_env() {
 setup_env "host-dashboard"
 setup_env "remote-auth"
 setup_env "remote-components"
-
-# Create root .env if it doesn't exist
-if [ ! -f ".env" ] && [ -f ".env.example" ]; then
-    echo "Creating root .env file"
-    cp .env.example .env
-fi

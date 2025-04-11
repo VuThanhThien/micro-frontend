@@ -49,7 +49,13 @@ This project demonstrates the use of micro frontends in a dashboard application 
    pnpm install
    ```
 
-3. Run development servers:
+3. Setup environment:
+   ```bash
+   pnpm run setup-env
+   ```
+   This will create `.env` files for all services based on their `.env.example` files.
+
+4. Run development servers:
 
    Open terminals,
    ```bash
@@ -69,16 +75,17 @@ This project demonstrates the use of micro frontends in a dashboard application 
    pnpm dev
    ```
 
-4. Build for production:
+5. Build for production:
    ```bash
    pnpm build
    pnpm preview
    ```
 
-5. Visit http://localhost:3000 to see the main application
+6. Visit http://localhost:3000 to see the main application
 
 ## Available Scripts
 
+- `pnpm run setup-env`: Setup environment files for all services
 - `pnpm dev`: Run all applications in development mode
 - `pnpm build`: Build all applications
 - `pnpm preview`: Preview built applications

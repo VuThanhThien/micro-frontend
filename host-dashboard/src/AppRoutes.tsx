@@ -21,11 +21,11 @@ import {
 const Landing = React.lazy(() => import("./landing/pages/Landing"));
 
 // Admin
-const Admin = React.lazy(() => import("./admin/pages/Admin"));
-const Dashboard = React.lazy(() => import("./admin/pages/Dashboard"));
+import Admin from "admin/pages/Admin";
+import Home from "admin/pages/Home";
+import Dashboard from "admin/pages/Dashboard";
 const Faq = React.lazy(() => import("./admin/pages/Faq"));
 const HelpCenter = React.lazy(() => import("./admin/pages/HelpCenter"));
-const Home = React.lazy(() => import("./admin/pages/Home"));
 const Profile = React.lazy(() => import("./admin/pages/Profile"));
 const ProfileActivity = React.lazy(
   () => import("./admin/pages/ProfileActivity")
