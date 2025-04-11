@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --port 3000 --strictPort",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist node_modules",
     "format:all": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
@@ -59,6 +59,7 @@
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4",
+    "vue": "^3.2.27",
     "web-vitals": "^4.2.4",
     "yup": "^1.6.1"
   },

@@ -47,6 +47,27 @@ services:
     networks:
       - micro-frontend-network
 
+  remote-vue:
+    build:
+      context: .
+      dockerfile: remote-vue/Dockerfile
+      args:
+        - VITE_APP_NAME=${VITE_VUE_APP_NAME:-Vue Dashboard}
+        - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
+    env_file:
+      - ./remote-vue/.env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3003:80"
+    volumes:
+      - types-volume:/app/types
+    depends_on:
+      - types
+      - remote-components
+    networks:
+      - micro-frontend-network
+
   host-dashboard:
     build:
       context: .
