@@ -17,6 +17,7 @@ import {
   Register,
 } from "remoteAuth/pages";
 
+
 // Landing
 const Landing = React.lazy(() => import("./landing/pages/Landing"));
 
@@ -24,6 +25,7 @@ const Landing = React.lazy(() => import("./landing/pages/Landing"));
 import Admin from "admin/pages/Admin";
 import Home from "admin/pages/Home";
 import Dashboard from "admin/pages/Dashboard";
+import VueDashboardPage from "pages/VueDashboard";
 const Faq = React.lazy(() => import("./admin/pages/Faq"));
 const HelpCenter = React.lazy(() => import("./admin/pages/HelpCenter"));
 const Profile = React.lazy(() => import("./admin/pages/Profile"));
@@ -71,6 +73,7 @@ const AppRoutes = () => {
         <Route path="/under-construction" element={<UnderConstructions />} />
         <Route path="/403" element={<Forbidden />} />
         <Route path="/404" element={<NotFound />} />
+        <Route path="/vue-dashboard" element={<VueDashboardPage />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </Suspense>

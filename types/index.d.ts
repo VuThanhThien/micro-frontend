@@ -71,6 +71,10 @@ declare module "remoteAuth/contexts" {
   function useAuth(): AuthContextInterface;
 }
 
+declare module "remoteVue/pages" {
+  const Dashboard;
+}
+
 interface UserInfo {
   id: string;
   avatar?: string;

@@ -8,6 +8,7 @@ type LogoProps = {
 
 const Logo = ({ colored = false, size = 40, color = 'currentColor', ...boxProps }: LogoProps) => {
   return (
+    // @ts-ignore
     <Box {...boxProps} height={size} width={size}>
       <img
         src={'assets/logo.svg'}

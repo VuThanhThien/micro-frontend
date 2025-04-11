@@ -15,6 +15,7 @@ const Transition = React.forwardRef(function Transition(
   },
   ref: React.Ref<unknown>,
 ) {
+  // @ts-ignore
   return <Slide direction='up' ref={ref} {...props} />;
 });
 

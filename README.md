@@ -39,25 +39,30 @@ This project demonstrates the use of micro frontends in a dashboard application 
 ## Installation
 
 1. Clone repository:
+
    ```bash
    git clone https://github.com/VuThanhThien/micro-frontend
-   cd vite-micro-frontends
+   cd micro-frontends
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Setup environment:
+
    ```bash
    pnpm run setup-env
    ```
+
    This will create `.env` files for all services based on their `.env.example` files.
 
 4. Run development servers:
 
    Open terminals,
+
    ```bash
    cd remote-components
    pnpm build
@@ -76,12 +81,13 @@ This project demonstrates the use of micro frontends in a dashboard application 
    ```
 
 5. Build for production:
+
    ```bash
    pnpm build
    pnpm preview
    ```
 
-6. Visit http://localhost:3000 to see the main application
+6. Visit <http://localhost:3000> to see the main application
 
 ## Available Scripts
 
