@@ -1,14 +1,16 @@
+import path from "node:path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import federation from "@originjs/vite-plugin-federation";
 import { visualizer } from "rollup-plugin-visualizer";
-
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   base: "/",
   plugins: [
     vue(),
+    tailwindcss(),
     visualizer(),
     federation({
       name: "remoteVue",
@@ -16,9 +18,14 @@ export default defineConfig({
       exposes: {
         "./pages": "./src/exposes/pages",
       },
-      shared: ["vue", "vue-router", "pinia"],
+      shared: ["vue", "vue-router", "pinia", "tailwindcss", "@vueuse/core"],
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   build: {
     target: "esnext",
     minify: false,
