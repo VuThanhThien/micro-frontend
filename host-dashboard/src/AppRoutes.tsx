@@ -24,6 +24,8 @@ const Landing = React.lazy(() => import("./landing/pages/Landing"));
 import Admin from "admin/pages/Admin";
 import Home from "admin/pages/Home";
 import Dashboard from "admin/pages/Dashboard";
+import VueDashboard from "vue/pages/Dashboard";
+
 const Faq = React.lazy(() => import("./admin/pages/Faq"));
 const HelpCenter = React.lazy(() => import("./admin/pages/HelpCenter"));
 const Profile = React.lazy(() => import("./admin/pages/Profile"));
@@ -66,6 +68,7 @@ const AppRoutes = () => {
           path="/forgot-password-submit"
           element={<ForgotPasswordSubmit />}
         />
+        <Route path="/vue" element={<VueDashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/under-construction" element={<UnderConstructions />} />

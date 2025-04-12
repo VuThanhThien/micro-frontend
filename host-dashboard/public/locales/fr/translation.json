@@ -8,7 +8,8 @@
         "home": "Home",
         "projects": "Projets",
         "settings": "Paramètres",
-        "userManagement": "Utilisateurs"
+        "userManagement": "Utilisateurs",
+        "vue": "Vuejs App"
       }
     },
     "header": {
