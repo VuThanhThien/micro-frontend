@@ -19,6 +19,11 @@ This project demonstrates the use of micro frontends in a dashboard application 
   - Features: Reusable UI components
   - Tech stack: React, TypeScript, TailwindCSS, Vite
 
+- **remote-vue**: Vue.js based module
+  - Port: 3003
+  - Features: Vue.js specific features and components
+  - Tech stack: Vue 3, TypeScript, TailwindCSS, Vite
+
 - **types**: Shared TypeScript types directory
 
 ## Key Features
@@ -27,8 +32,8 @@ This project demonstrates the use of micro frontends in a dashboard application 
 - Lazy loading of components from remote apps
 - Shared state and types between micro frontends
 - Modern UI with TailwindCSS
-- State management with React Query
-- Routing with React Router DOM
+- State management with React Query and Vuex/Pinia
+- Routing with React Router DOM and Vue Router
 - Monorepo management with PNPM Workspace
 
 ## System Requirements
@@ -41,7 +46,7 @@ This project demonstrates the use of micro frontends in a dashboard application 
 1. Clone repository:
    ```bash
    git clone https://github.com/VuThanhThien/micro-frontend
-   cd vite-micro-frontends
+   cd micro-frontends
    ```
 
 2. Install dependencies:

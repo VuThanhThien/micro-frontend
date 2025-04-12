@@ -71,6 +71,12 @@ declare module "remoteAuth/contexts" {
   function useAuth(): AuthContextInterface;
 }
 
+declare module "remoteVue/pages" {
+  const mount: (el: HTMLElement) => {
+    unmount: () => void;
+  };
+}
+
 interface UserInfo {
   id: string;
   avatar?: string;

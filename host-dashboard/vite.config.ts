@@ -38,6 +38,7 @@ export default defineConfig({
       remotes: {
         remoteComponents: "http://localhost:3002/assets/remoteEntry.js",
         remoteAuth: "http://localhost:3001/assets/remoteEntry.js",
+        remoteVue: "http://localhost:3003/assets/remoteEntry.js",
       },
       shared: [
         "react",

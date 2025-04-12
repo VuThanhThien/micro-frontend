@@ -17,3 +17,4 @@ setup_env() {
 setup_env "host-dashboard"
 setup_env "remote-auth"
 setup_env "remote-components"
+setup_env "remote-vue"

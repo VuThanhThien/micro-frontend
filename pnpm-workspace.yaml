@@ -2,6 +2,7 @@ packages:
   - host-dashboard
   - remote-auth
   - remote-components
+  - remote-vue
   - types
 
 ignoredBuiltDependencies:

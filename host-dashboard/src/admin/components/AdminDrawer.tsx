@@ -19,6 +19,7 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Logo from "core/components/Logo";
+import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import { useAuth } from "remoteAuth/contexts";
 
 type AdminDrawerProps = {
@@ -53,6 +54,11 @@ export const menuItems = [
     icon: HelpCenterIcon,
     key: "admin.drawer.menu.help",
     path: "/admin/help",
+  },
+  {
+    icon: ImportantDevicesIcon,
+    key: "admin.drawer.menu.vue",
+    path: "/vue",
   },
 ];
 
