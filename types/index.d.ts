@@ -1,8 +1,6 @@
 declare module "remoteComponents/components" {
   import React from "react";
 
-  const Wave: React.FC;
-
   interface ITitleProps extends React.ComponentProps<"h2"> {
     children?: React.ReactNode;
     size?: "xl" | "lg" | "base";
