@@ -85,6 +85,12 @@ This project demonstrates the use of micro frontends in a dashboard application 
    ```
 
    ```bash
+   cd remote-vue
+   pnpm build
+   pnpm preview
+   ```
+
+   ```bash
    cd host-dashboard
    pnpm dev
    ```
@@ -96,7 +102,7 @@ This project demonstrates the use of micro frontends in a dashboard application 
    pnpm preview
    ```
 
-6. Visit http://localhost:3000 to see the main application
+6. Visit <http://localhost:3000> to see the main application
 
 ## Available Scripts
 

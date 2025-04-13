@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from '../../App.vue';
+import Dashboard from '@/components/Dashboard.vue';
 
 export const mount = (el: HTMLElement) => {
-  const app = createApp(App);
+  const app = createApp(Dashboard);
   app.mount(el);
 
   return {

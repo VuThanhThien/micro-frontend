@@ -1,0 +1,24 @@
+<script lang="ts" setup>
+import { RangeCalendarGridRow, type RangeCalendarGridRowProps, useForwardProps } from 'radix-vue'
+import { computed, type HTMLAttributes } from 'vue'
+import { cn } from '@/lib/utils'
+
+const props = defineProps<RangeCalendarGridRowProps & { class?: HTMLAttributes['class'] }>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props // eslint-disable-line @typescript-eslint/no-unused-vars
+
+  return delegated
+})
+
+const forwardedProps = useForwardProps(delegatedProps)
+</script>
+
+<template>
+  <RangeCalendarGridRow
+    :class="cn('flex mt-2 w-full', props.class)"
+    v-bind="forwardedProps"
+  >
+    <slot />
+  </RangeCalendarGridRow>
+</template>
