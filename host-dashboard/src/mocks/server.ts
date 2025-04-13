@@ -32,7 +32,7 @@ mock.onGet('/api/user-info', { params: { key: 'AUTHKEY123' } }).reply(200, userI
 mock.onDelete('/api/events').reply(({ data }) => [200, data]);
 mock.onGet('/api/events').reply(
   200,
-  events.map((e) => ({ ...e, start: now, end: now })),
+  events.map(e => ({ ...e, start: now, end: now }))
 );
 mock.onPost('/api/events').reply(({ data }) => [201, { ...JSON.parse(data), id: generateId() }]);
 mock.onPut('/api/events').reply(({ data }) => [200, data]);

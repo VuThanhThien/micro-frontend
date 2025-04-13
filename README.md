@@ -5,21 +5,25 @@ This project demonstrates the use of micro frontends in a dashboard application 
 ## Project Structure
 
 - **host-dashboard**: Main application with layout and routing
+
   - Port: 3000
   - Features: Dashboard, user management, profile
   - Tech stack: React, TypeScript, TailwindCSS, Vite
 
 - **remote-auth**: Independent authentication module
+
   - Port: 3001
   - Features: Login, register, forgot password
   - Tech stack: React, TypeScript, TailwindCSS, Vite
 
 - **remote-components**: Shared component library
+
   - Port: 3002
   - Features: Reusable UI components
   - Tech stack: React, TypeScript, TailwindCSS, Vite
 
 - **remote-vue**: Vue.js based module
+
   - Port: 3003
   - Features: Vue.js specific features and components
   - Tech stack: Vue 3, TypeScript, TailwindCSS, Vite
@@ -44,25 +48,30 @@ This project demonstrates the use of micro frontends in a dashboard application 
 ## Installation
 
 1. Clone repository:
+
    ```bash
    git clone https://github.com/VuThanhThien/micro-frontend
    cd micro-frontends
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Setup environment:
+
    ```bash
    pnpm run setup-env
    ```
+
    This will create `.env` files for all services based on their `.env.example` files.
 
 4. Run development servers:
 
    Open terminals,
+
    ```bash
    cd remote-components
    pnpm build
@@ -81,6 +90,7 @@ This project demonstrates the use of micro frontends in a dashboard application 
    ```
 
 5. Build for production:
+
    ```bash
    pnpm build
    pnpm preview

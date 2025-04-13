@@ -37,12 +37,15 @@ const BudgetWidget = () => {
     <Card>
       <CardHeader title={t('dashboard.budget.title')} />
       <CardContent>
-        <ResponsiveContainer width='99%' height={244}>
-          <RadarChart cx='50%' cy='50%' outerRadius='80%' data={data}>
-            <PolarAngleAxis dataKey='subject' tick={{ fill: theme.palette.text.secondary, fontSize: 14 }} />
+        <ResponsiveContainer width="99%" height={244}>
+          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+            <PolarAngleAxis
+              dataKey="subject"
+              tick={{ fill: theme.palette.text.secondary, fontSize: 14 }}
+            />
             <Radar
               name={t('dashboard.budget.legend.unit')}
-              dataKey='A'
+              dataKey="A"
               stroke={theme.palette.primary.main}
               strokeWidth={8}
               fill={theme.palette.primary.main}

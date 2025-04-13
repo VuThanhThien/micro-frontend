@@ -47,9 +47,16 @@ const BottomNavBar = () => {
   }, [location]);
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, width: '100%', pb: 4 }} elevation={3}>
-      <BottomNavigation style={{ backgroundColor: theme.palette.background.paper }} showLabels value={value}>
-        {menuItems.map((item) => {
+    <Paper
+      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, width: '100%', pb: 4 }}
+      elevation={3}
+    >
+      <BottomNavigation
+        style={{ backgroundColor: theme.palette.background.paper }}
+        showLabels
+        value={value}
+      >
+        {menuItems.map(item => {
           return (
             <BottomNavigationAction
               href={item.path}

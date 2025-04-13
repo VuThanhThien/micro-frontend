@@ -1,8 +1,8 @@
-import { Locale } from "date-fns";
-import { enUS as en } from "date-fns/locale";
-import { fr } from "date-fns/locale";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Locale } from 'date-fns';
+import { enUS as en } from 'date-fns/locale';
+import { fr } from 'date-fns/locale';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const locales: { [key: string]: Locale } = { en, fr };
 

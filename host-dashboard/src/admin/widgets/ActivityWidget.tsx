@@ -41,7 +41,7 @@ const ActivityWidget = () => {
     <Card>
       <CardHeader title={t('dashboard.activity.title')} />
       <CardContent>
-        <ResponsiveContainer width='99%' height={244}>
+        <ResponsiveContainer width="99%" height={244}>
           <LineChart
             width={500}
             height={300}
@@ -57,7 +57,7 @@ const ActivityWidget = () => {
               axisLine={false}
               tick={{ fill: theme.palette.text.secondary, fontSize: 12 }}
               tickLine={false}
-              dataKey='name'
+              dataKey="name"
             />
             <Tooltip
               contentStyle={{
@@ -68,9 +68,9 @@ const ActivityWidget = () => {
               }}
             />
             <Line
-              name='Value'
-              type='monotone'
-              dataKey='pv'
+              name="Value"
+              type="monotone"
+              dataKey="pv"
               stroke={theme.palette.primary.main}
               strokeWidth={6}
               activeDot={{ r: 8 }}

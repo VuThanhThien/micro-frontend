@@ -15,9 +15,9 @@ const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<unknown>;
   },
-  ref: React.Ref<unknown>,
+  ref: React.Ref<unknown>
 ) {
-  return <Slide direction='up' ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function ListComments({
@@ -44,13 +44,16 @@ export default function ListComments({
     >
       <AppBar sx={{ position: 'relative', backgroundColor: theme.palette.background.paper }}>
         <Toolbar>
-          <IconButton edge='start' color='inherit' onClick={handleClose} aria-label='close'>
+          <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
             <CloseIcon sx={{ color: theme.palette.text.primary }} />
           </IconButton>
-          <Typography sx={{ mr: 2, flex: 1, textAlign: 'center', color: theme.palette.text.primary }} variant='h6'>
+          <Typography
+            sx={{ mr: 2, flex: 1, textAlign: 'center', color: theme.palette.text.primary }}
+            variant="h6"
+          >
             All Comments
           </Typography>
-          <IconButton edge='start' color='success' onClick={handleNewComment} aria-label='close'>
+          <IconButton edge="start" color="success" onClick={handleNewComment} aria-label="close">
             <AddCommentIcon sx={{ color: 'green' }} />
           </IconButton>
         </Toolbar>
@@ -58,24 +61,39 @@ export default function ListComments({
       <List>
         <ListItemButton>
           <ListItemText>
-            <Box className='flex gap-2'>
+            <Box className="flex gap-2">
               <MessageIcon />
               <Box>
                 <Typography
-                  variant='h5'
-                  sx={{ fontSize: '16px', fontWeight: 600, lineHeight: '20px', color: theme.palette.text.primary }}
+                  variant="h5"
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    lineHeight: '20px',
+                    color: theme.palette.text.primary,
+                  }}
                 >
                   Haminton 2042
                 </Typography>
                 <Typography
-                  sx={{ fontSize: '12px', fontWeight: 400, lineHeight: '20px', color: theme.palette.text.primary }}
+                  sx={{
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    lineHeight: '20px',
+                    color: theme.palette.text.primary,
+                  }}
                 >
                   Dec 11 12:00CT
                 </Typography>
                 <Typography
                   component={'p'}
-                  className='truncate max-w-[350px]'
-                  sx={{ fontSize: '14px', fontWeight: 400, lineHeight: '20px', color: theme.palette.text.primary }}
+                  className="truncate max-w-[350px]"
+                  sx={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    lineHeight: '20px',
+                    color: theme.palette.text.primary,
+                  }}
                 >
                   Tried to restart, but unable to do so, calling SLB field tech to help troubleshoot
                 </Typography>
@@ -87,16 +105,21 @@ export default function ListComments({
 
         <ListItemButton>
           <ListItemText>
-            <Box className='flex gap-2'>
+            <Box className="flex gap-2">
               <MessageIcon />
               <Box>
-                <Typography variant='h5' sx={{ fontSize: '16px', fontWeight: 600, lineHeight: '20px' }}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontSize: '16px', fontWeight: 600, lineHeight: '20px' }}
+                >
                   Haminton 2042
                 </Typography>
-                <Typography sx={{ fontSize: '12px', fontWeight: 400, lineHeight: '20px' }}>Dec 11 12:00CT</Typography>
+                <Typography sx={{ fontSize: '12px', fontWeight: 400, lineHeight: '20px' }}>
+                  Dec 11 12:00CT
+                </Typography>
                 <Typography
                   component={'p'}
-                  className='truncate max-w-[350px]'
+                  className="truncate max-w-[350px]"
                   sx={{ fontSize: '14px', fontWeight: 400, lineHeight: '20px' }}
                 >
                   Tried to restart, but unable to do so, calling SLB field tech to help troubleshoot
@@ -109,16 +132,21 @@ export default function ListComments({
 
         <ListItemButton>
           <ListItemText>
-            <Box className='flex gap-2'>
+            <Box className="flex gap-2">
               <MessageIcon />
               <Box>
-                <Typography variant='h5' sx={{ fontSize: '16px', fontWeight: 600, lineHeight: '20px' }}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontSize: '16px', fontWeight: 600, lineHeight: '20px' }}
+                >
                   Haminton 2042
                 </Typography>
-                <Typography sx={{ fontSize: '12px', fontWeight: 400, lineHeight: '20px' }}>Dec 11 12:00CT</Typography>
+                <Typography sx={{ fontSize: '12px', fontWeight: 400, lineHeight: '20px' }}>
+                  Dec 11 12:00CT
+                </Typography>
                 <Typography
                   component={'p'}
-                  className='truncate max-w-[350px]'
+                  className="truncate max-w-[350px]"
                   sx={{ fontSize: '14px', fontWeight: 400, lineHeight: '20px' }}
                 >
                   Tried to restart, but unable to do so, calling SLB field tech to help troubleshoot

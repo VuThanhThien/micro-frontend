@@ -19,7 +19,7 @@ const SelectToolbar = ({ onCancel, onDelete, processing, selected }: SelectToolb
 
   return (
     <Toolbar sx={{ ml: 1, px: { xs: 3, sm: 6 } }}>
-      <Fab color='secondary' onClick={onCancel} variant='extended'>
+      <Fab color="secondary" onClick={onCancel} variant="extended">
         <CloseIcon sx={{ mr: 1 }} />
         {numSelected} {t('common.selected')}
       </Fab>
@@ -27,7 +27,7 @@ const SelectToolbar = ({ onCancel, onDelete, processing, selected }: SelectToolb
 
       {numSelected > 0 && (
         <Tooltip title={t('common.delete') as string}>
-          <Fab color='secondary' disabled={processing} onClick={() => onDelete(selected)}>
+          <Fab color="secondary" disabled={processing} onClick={() => onDelete(selected)}>
             <DeleteIcon />
           </Fab>
         </Tooltip>

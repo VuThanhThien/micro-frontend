@@ -6,7 +6,9 @@ type EmptyProps = {
 };
 
 const Empty = ({ message, title }: EmptyProps) => {
-  return <Result image={<img src={'assets/empty.svg'} alt='Logo' />} subTitle={message} title={title} />;
+  return (
+    <Result image={<img src={'assets/empty.svg'} alt="Logo" />} subTitle={message} title={title} />
+  );
 };
 
 export default Empty;

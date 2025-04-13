@@ -19,13 +19,18 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
 
   return (
     <Paper square>
-      <AppBar color='transparent' position='relative'>
+      <AppBar color="transparent" position="relative">
         <Toolbar>
           <Logo size={24} sx={{ mr: 2 }} />
-          <Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             {VITE_APP_NAME}
           </Typography>
-          <IconButton color='default' aria-label='settings' component='span' onClick={handleSettingsToggle}>
+          <IconButton
+            color="default"
+            aria-label="settings"
+            component="span"
+            onClick={handleSettingsToggle}
+          >
             <SettingsIcon />
           </IconButton>
           <SettingsDrawer onDrawerToggle={handleSettingsToggle} open={settingsOpen} />

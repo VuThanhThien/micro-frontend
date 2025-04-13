@@ -5,7 +5,9 @@ const storage = {
     return JSON.parse(window.localStorage.getItem(`${storagePrefixClient}_access_token`) as string);
   },
   getRefreshTokenClient: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefixClient}_refresh_token`) as string);
+    return JSON.parse(
+      window.localStorage.getItem(`${storagePrefixClient}_refresh_token`) as string
+    );
   },
   setAccessTokenClient: (token: string) => {
     window.localStorage.setItem(`${storagePrefixClient}_access_token`, JSON.stringify(token));

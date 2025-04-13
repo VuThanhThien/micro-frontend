@@ -54,8 +54,8 @@ const TeamProgressWidget = () => {
       <CardContent sx={{ px: 2 }}>
         <TableContainer>
           <Table
-            aria-label='team progress table'
-            size='small'
+            aria-label="team progress table"
+            size="small"
             sx={{
               '& td, & th': {
                 border: 0,
@@ -66,14 +66,14 @@ const TeamProgressWidget = () => {
               <TableRow>
                 <TableCell>{t('dashboard.teams.columns.team')}</TableCell>
                 <TableCell>{t('dashboard.teams.columns.progress')}</TableCell>
-                <TableCell align='center'>{t('dashboard.teams.columns.value')}</TableCell>
+                <TableCell align="center">{t('dashboard.teams.columns.value')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {teams.map((team) => (
+              {teams.map(team => (
                 <TableRow key={team.id}>
                   <TableCell>
-                    <Typography color='text.secondary' component='div'>
+                    <Typography color="text.secondary" component="div">
                       {team.name}
                     </Typography>
                   </TableCell>
@@ -82,18 +82,22 @@ const TeamProgressWidget = () => {
                       <Box sx={{ width: '100%', mr: 3 }}>
                         <LinearProgress
                           aria-label={`${team.name} progress`}
-                          color='inherit'
+                          color="inherit"
                           sx={{ color: team.color }}
                           value={team.progress}
-                          variant='determinate'
+                          variant="determinate"
                         />
                       </Box>
                       <Box sx={{ minWidth: 35 }}>
-                        <Typography component='span' variant='h6' color={team.color}>{`${team.progress}%`}</Typography>
+                        <Typography
+                          component="span"
+                          variant="h6"
+                          color={team.color}
+                        >{`${team.progress}%`}</Typography>
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell align='center'>{team.value}</TableCell>
+                  <TableCell align="center">{team.value}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

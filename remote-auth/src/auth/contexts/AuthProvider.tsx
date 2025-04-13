@@ -42,18 +42,18 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setAuthKey(key);
         return key;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   };
 
   const handleLogout = async () => {
     return logout()
-      .then((data) => {
+      .then(data => {
         setAuthKey('');
         return data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   };

@@ -42,18 +42,18 @@ const ForgotPasswordSubmit = () => {
 
   return (
     <BoxedLayout>
-      <Typography component='h1' variant='h5'>
+      <Typography component="h1" variant="h5">
         {t('auth.forgotPasswordSubmit.title')}
       </Typography>
       <Typography marginTop={3}>{t('auth.forgotPasswordSubmit.subTitle')}</Typography>
-      <Box component='form' marginTop={3} noValidate onSubmit={formik.handleSubmit}>
+      <Box component="form" marginTop={3} noValidate onSubmit={formik.handleSubmit}>
         <TextField
-          margin='normal'
+          margin="normal"
           required
           fullWidth
-          id='code'
+          id="code"
           label={t('auth.forgotPasswordSubmit.form.code.label')}
-          name='code'
+          name="code"
           autoFocus
           disabled={isLoading}
           value={formik.values.code}
@@ -62,13 +62,13 @@ const ForgotPasswordSubmit = () => {
           helperText={formik.touched.code && formik.errors.code}
         />
         <TextField
-          margin='normal'
+          margin="normal"
           required
           fullWidth
-          name='newPassword'
+          name="newPassword"
           label={t('auth.forgotPasswordSubmit.form.newPassword.label')}
-          type='password'
-          id='newPassword'
+          type="password"
+          id="newPassword"
           disabled={isLoading}
           value={formik.values.newPassword}
           onChange={formik.handleChange}
@@ -76,13 +76,13 @@ const ForgotPasswordSubmit = () => {
           helperText={formik.touched.newPassword && formik.errors.newPassword}
         />
         <TextField
-          margin='normal'
+          margin="normal"
           required
           fullWidth
-          name='confirmPassword'
+          name="confirmPassword"
           label={t('auth.forgotPasswordSubmit.form.confirmPassword.label')}
-          type='password'
-          id='confirmPassword'
+          type="password"
+          id="confirmPassword"
           disabled={isLoading}
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
@@ -90,17 +90,17 @@ const ForgotPasswordSubmit = () => {
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
         />
         <LoadingButton
-          type='submit'
+          type="submit"
           fullWidth
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           disabled={isLoading}
           loading={isLoading}
           sx={{ mt: 2 }}
         >
           {t('auth.forgotPasswordSubmit.form.action')}
         </LoadingButton>
-        <Button component={Link} to={`/login`} color='primary' fullWidth sx={{ mt: 2 }}>
+        <Button component={Link} to={`/login`} color="primary" fullWidth sx={{ mt: 2 }}>
           {t('auth.forgotPasswordSubmit.form.back')}
         </Button>
       </Box>

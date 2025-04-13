@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+dist
+**/dist
+build
+**/build
+
+# Public assets
+public
+**/public
+
+# Cache
+.cache
+**/.cache
+
+# Git
+.git
+**/.git
+
+# IDE
+.idea
+**/.idea
+.vscode
+**/.vscode
+
+# OS
+.DS_Store
+**/.DS_Store 
+stats.html

@@ -11,7 +11,7 @@ const Logo = ({ colored = false, size = 40, color = 'currentColor', ...boxProps 
     <Box {...boxProps} height={size} width={size}>
       <img
         src={'assets/logo.svg'}
-        alt='Logo'
+        alt="Logo"
         style={{
           width: size,
           height: size,

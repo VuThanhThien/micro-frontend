@@ -12,8 +12,8 @@ const AdminAppBar = ({ children }: AdminAppBarProps) => {
 
   return (
     <AppBar
-      color='default'
-      position='fixed'
+      color="default"
+      position="fixed"
       sx={{
         width: { lg: `calc(100% - ${width}px)`, sm: '100%' },
         marginLeft: { lg: width, sm: 0 },

@@ -15,7 +15,8 @@ export const createThemeComponents = (theme: Theme) => ({
         borderLeftColor: theme.palette.primary.light,
       },
       '#nprogress .peg': {
-        boxShadow: '0 0 15px ' + theme.palette.primary.light + ', 0 0 8px' + theme.palette.primary.light,
+        boxShadow:
+          '0 0 15px ' + theme.palette.primary.light + ', 0 0 8px' + theme.palette.primary.light,
       },
     },
   },

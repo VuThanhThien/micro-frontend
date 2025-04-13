@@ -1,9 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { Suspense } from "react";
-import { Forbidden, NotFound } from "pages";
-import Loader from "components/Loader";
-import Home from "pages/Home";
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Forbidden, NotFound } from 'pages';
+import Loader from 'components/Loader';
+import Home from 'pages/Home';
 
 const AppRoutes = () => {
   return (

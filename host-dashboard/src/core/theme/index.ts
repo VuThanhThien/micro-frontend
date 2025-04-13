@@ -23,6 +23,6 @@ export const createTheme = (mode: 'dark' | 'light') => {
     {
       components: createThemeComponents(baseTheme),
     },
-    baseTheme,
+    baseTheme
   );
 };

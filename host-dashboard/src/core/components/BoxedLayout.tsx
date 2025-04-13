@@ -19,15 +19,15 @@ const BoxedLayout = ({ children }: BoxedLayoutProps) => {
   return (
     <React.Fragment>
       <GlobalStyles styles={{ body: { backgroundColor: theme.palette.background.paper } }} />
-      <AppBar color='transparent' position='relative'>
+      <AppBar color="transparent" position="relative">
         <Toolbar>
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton aria-label='settings' component='span' onClick={handleSettingsToggle}>
+          <IconButton aria-label="settings" component="span" onClick={handleSettingsToggle}>
             <SettingsIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Container component='main' maxWidth='xs' sx={{ mt: 6 }}>
+      <Container component="main" maxWidth="xs" sx={{ mt: 6 }}>
         <Box
           sx={{
             display: 'flex',

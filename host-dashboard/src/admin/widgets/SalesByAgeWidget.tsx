@@ -33,21 +33,27 @@ const SalesByAgeWidget = () => {
     <Card>
       <CardHeader title={t('dashboard.salesByAge.title')} />
       <CardContent>
-        <ResponsiveContainer width='99%' height={244}>
-          <RadialBarChart barGap={1} innerRadius='15%' outerRadius='100%' barSize={16} data={data}>
-            <PolarAngleAxis type='number' domain={[0, 100]} dataKey={'value'} angleAxisId={0} tick={false} />
+        <ResponsiveContainer width="99%" height={244}>
+          <RadialBarChart barGap={1} innerRadius="15%" outerRadius="100%" barSize={16} data={data}>
+            <PolarAngleAxis
+              type="number"
+              domain={[0, 100]}
+              dataKey={'value'}
+              angleAxisId={0}
+              tick={false}
+            />
             <RadialBar
               background={{ fill: theme.palette.background.default }}
               cornerRadius={16}
               label={{ position: 'insideStart', fill: '#fff', fontWeight: 700 }}
-              dataKey='uv'
+              dataKey="uv"
             />
             <Legend
-              align='right'
+              align="right"
               wrapperStyle={{ fontWeight: 700 }}
               iconSize={16}
-              layout='vertical'
-              verticalAlign='middle'
+              layout="vertical"
+              verticalAlign="middle"
             />
           </RadialBarChart>
         </ResponsiveContainer>

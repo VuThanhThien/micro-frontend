@@ -11,6 +11,15 @@ importers:
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
+      husky:
+        specifier: ^9.0.11
+        version: 9.1.7
+      lint-staged:
+        specifier: ^15.2.2
+        version: 15.5.0
+      prettier:
+        specifier: ^3.2.5
+        version: 3.5.3
 
   host-dashboard:
     dependencies:

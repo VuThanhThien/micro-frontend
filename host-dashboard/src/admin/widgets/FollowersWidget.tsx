@@ -40,17 +40,17 @@ const FollowersWidget = () => {
 
   return (
     <React.Fragment>
-      {socials.map((social) => (
+      {socials.map(social => (
         <Card key={social.name} sx={{ mb: 2 }}>
           <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
             <Avatar aria-label={`${social.name} avatar`} sx={{ bgcolor: social.bgcolor, mr: 2 }}>
               {social.icon}
             </Avatar>
             <Box sx={{ flexGrow: 1 }}>
-              <Typography component='div' variant='h6'>
+              <Typography component="div" variant="h6">
                 {social.value}
               </Typography>
-              <Typography variant='body2' color='textSecondary' component='div'>
+              <Typography variant="body2" color="textSecondary" component="div">
                 {t(social.name)}
               </Typography>
             </Box>

@@ -13,7 +13,7 @@ export function useAddUser() {
 
   const { isLoading, mutateAsync } = useMutation(addUser, {
     onSuccess: (user: User) => {
-      queryClient.setQueryData<User[]>(['users'], (oldUsers) => addOne(oldUsers, user));
+      queryClient.setQueryData<User[]>(['users'], oldUsers => addOne(oldUsers, user));
     },
   });
 

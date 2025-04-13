@@ -23,11 +23,11 @@ function SuspenseLoader() {
         width: '100%',
         height: '100%',
       }}
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
     >
-      <Backdrop sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+      <Backdrop sx={{ zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
         <ClipLoader color={theme.palette.primary.main} loading={true} size={40} />
       </Backdrop>
     </Box>

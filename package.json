@@ -7,9 +7,14 @@
     "dev": "pnpm setup && pnpm -r --parallel dev",
     "build": "pnpm setup && pnpm -r build",
     "preview": "pnpm -r --parallel preview",
-    "clean": "pnpm -r clean"
+    "clean": "pnpm -r clean",
+    "format:all": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,scss,html}\" --ignore-unknown --config .prettierrc",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
   }
-} 
+}

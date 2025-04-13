@@ -10,5 +10,7 @@ clean:
 	pnpm clean
 preview:
 	pnpm preview
+format:
+	pnpm format:all
 
-.PHONY: docker-up install setup-env build clean preview
+.PHONY: docker-up install setup-env build clean preview format

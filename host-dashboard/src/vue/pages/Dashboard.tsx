@@ -1,4 +1,4 @@
-import VueWrapper from "vue/components/VueWrapper";
+import VueWrapper from 'vue/components/VueWrapper';
 
 const VueDashboard = () => {
   return <VueWrapper className="vue-app" />;

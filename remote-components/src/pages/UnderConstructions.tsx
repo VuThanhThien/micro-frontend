@@ -9,12 +9,12 @@ const UnderConstructions = () => {
   return (
     <Result
       extra={
-        <Button color='secondary' component={RouterLink} to={`/admin`} variant='contained'>
+        <Button color="secondary" component={RouterLink} to={`/admin`} variant="contained">
           {t('common.backHome')}
         </Button>
       }
-      image={<img src={'assets/constructions.svg'} alt='Logo' />}
-      maxWidth='sm'
+      image={<img src={'assets/constructions.svg'} alt="Logo" />}
+      maxWidth="sm"
       subTitle={t('common.errors.underConstructions.subTitle')}
       title={t('common.errors.underConstructions.title')}
     />

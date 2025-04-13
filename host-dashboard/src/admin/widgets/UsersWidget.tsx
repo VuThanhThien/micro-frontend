@@ -49,7 +49,7 @@ const UsersWidget = () => {
       <CardHeader title={t('dashboard.users.title')} />
       <CardContent>
         <List>
-          {users.map((user) => (
+          {users.map(user => (
             <ListItem disableGutters key={user.id}>
               <ListItemAvatar>
                 <Avatar>
@@ -65,9 +65,9 @@ const UsersWidget = () => {
               />
               <ListItemSecondaryAction>
                 <IconButton
-                  aria-label='Go to user details'
+                  aria-label="Go to user details"
                   component={RouterLink}
-                  edge='end'
+                  edge="end"
                   to={`/admin/user-management`}
                 >
                   <ChevronRightIcon />

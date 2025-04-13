@@ -29,7 +29,7 @@ const ProfilePassword = () => {
         .oneOf([Yup.ref('newPassword')], t('common.validations.passwordMatch'))
         .required(t('common.validations.required')),
     }),
-    onSubmit: (values) => handleUpdatePassword(values.oldPassword, values.newPassword),
+    onSubmit: values => handleUpdatePassword(values.oldPassword, values.newPassword),
   });
 
   const handleUpdatePassword = async (oldPassword: string, newPassword: string) => {
@@ -49,14 +49,14 @@ const ProfilePassword = () => {
         <CardHeader title={t('profile.password.title')} />
         <CardContent>
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            name='oldPassword'
+            name="oldPassword"
             label={t('profile.password.form.current.label')}
-            type='password'
-            id='oldPassword'
-            autoComplete='current-password'
+            type="password"
+            id="oldPassword"
+            autoComplete="current-password"
             disabled={isUpdating}
             value={formik.values.oldPassword}
             onChange={formik.handleChange}
@@ -64,13 +64,13 @@ const ProfilePassword = () => {
             helperText={formik.touched.oldPassword && formik.errors.oldPassword}
           />
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            name='newPassword'
+            name="newPassword"
             label={t('profile.password.form.new.label')}
-            type='password'
-            id='newPassword'
+            type="password"
+            id="newPassword"
             disabled={isUpdating}
             value={formik.values.newPassword}
             onChange={formik.handleChange}
@@ -78,13 +78,13 @@ const ProfilePassword = () => {
             helperText={formik.touched.newPassword && formik.errors.newPassword}
           />
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            name='confirmPassword'
+            name="confirmPassword"
             label={t('profile.password.form.confirm.label')}
-            type='password'
-            id='confirmPassword'
+            type="password"
+            id="confirmPassword"
             disabled={isUpdating}
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
@@ -93,7 +93,7 @@ const ProfilePassword = () => {
           />
         </CardContent>
         <CardActions>
-          <LoadingButton type='submit' loading={isUpdating} variant='contained'>
+          <LoadingButton type="submit" loading={isUpdating} variant="contained">
             {t('common.update')}
           </LoadingButton>
         </CardActions>

@@ -25,10 +25,10 @@ const ProfileActivity = () => {
   return (
     <Box sx={{ '& .MuiTimelineItem-root:before': { content: 'none' } }}>
       <Timeline>
-        {data.map((log) => (
+        {data.map(log => (
           <TimelineItem key={log.id}>
             <TimelineSeparator>
-              <TimelineDot color='grey' />
+              <TimelineDot color="grey" />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
@@ -36,11 +36,11 @@ const ProfileActivity = () => {
                 <CardContent>
                   <Trans
                     components={{ bold: <strong /> }}
-                    defaults='<bold>You</bold> modify resource <bold>{{ resouce }}</bold>'
+                    defaults="<bold>You</bold> modify resource <bold>{{ resouce }}</bold>"
                     i18nKey={logKeys[log.code]}
                     values={log.params}
                   />
-                  <Typography component='div' marginTop={1} variant='caption'>
+                  <Typography component="div" marginTop={1} variant="caption">
                     {formatDistanceToNow(new Date(log.createdAt), {
                       addSuffix: true,
                       locale,

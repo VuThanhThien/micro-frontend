@@ -23,8 +23,8 @@ export const axios = Axios.create({
 
 axios.interceptors.request.use(authRequestInterceptor);
 axios.interceptors.response.use(
-  (response) => response,
-  async (error) => {
+  response => response,
+  async error => {
     const originalConfig = error.config;
     const refreshToken = storage.getRefreshTokenClient();
 
@@ -52,5 +52,5 @@ axios.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );

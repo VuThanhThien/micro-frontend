@@ -1,13 +1,13 @@
-import { createApp } from 'vue'
-import App from '../../App.vue'
+import { createApp } from 'vue';
+import App from '../../App.vue';
 
 export const mount = (el: HTMLElement) => {
-  const app = createApp(App)
-  app.mount(el)
-  
+  const app = createApp(App);
+  app.mount(el);
+
   return {
     unmount: () => {
-      app.unmount()
-    }
-  }
-} 
+      app.unmount();
+    },
+  };
+};

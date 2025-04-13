@@ -42,7 +42,9 @@ const ProfileInformation = () => {
       lastName: data ? data.lastName : '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email(t('common.validations.email')).required(t('common.validations.required')),
+      email: Yup.string()
+        .email(t('common.validations.email'))
+        .required(t('common.validations.required')),
       firstName: Yup.string()
         .max(20, t('common.validations.max', { size: 20 }))
         .required(t('common.validations.required')),
@@ -50,7 +52,7 @@ const ProfileInformation = () => {
         .max(30, t('common.validations.max', { size: 30 }))
         .required(t('common.validations.required')),
     }),
-    onSubmit: (values) => handleSubmit(values),
+    onSubmit: values => handleSubmit(values),
   });
 
   const handleSubmit = async (values: Partial<ProfileInfo>) => {
@@ -69,13 +71,13 @@ const ProfileInformation = () => {
         <CardHeader title={t('profile.info.title')} />
         <CardContent>
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='lastName'
+            id="lastName"
             label={t('profile.info.form.lastName.label')}
-            name='lastName'
-            autoComplete='family-name'
+            name="lastName"
+            autoComplete="family-name"
             autoFocus
             disabled={isUpdating}
             value={formik.values.lastName}
@@ -84,41 +86,46 @@ const ProfileInformation = () => {
             helperText={formik.touched.lastName && formik.errors.lastName}
           />
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='firstName'
+            id="firstName"
             label={t('profile.info.form.firstName.label')}
-            name='firstName'
-            autoComplete='given-name'
+            name="firstName"
+            autoComplete="given-name"
             disabled={isUpdating}
             value={formik.values.firstName}
             onChange={formik.handleChange}
             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
             helperText={formik.touched.firstName && formik.errors.firstName}
           />
-          <FormControl component='fieldset' margin='normal'>
-            <FormLabel component='legend'>{t('profile.info.form.gender.label')}</FormLabel>
+          <FormControl component="fieldset" margin="normal">
+            <FormLabel component="legend">{t('profile.info.form.gender.label')}</FormLabel>
             <RadioGroup
               row
-              aria-label='gender'
-              name='gender'
+              aria-label="gender"
+              name="gender"
               value={formik.values.gender}
               onChange={formik.handleChange}
             >
-              {genders.map((gender) => (
-                <FormControlLabel key={gender.value} value={gender.value} control={<Radio />} label={t(gender.label)} />
+              {genders.map(gender => (
+                <FormControlLabel
+                  key={gender.value}
+                  value={gender.value}
+                  control={<Radio />}
+                  label={t(gender.label)}
+                />
               ))}
             </RadioGroup>
           </FormControl>
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='email'
+            id="email"
             label={t('profile.info.form.email.label')}
-            name='email'
-            autoComplete='email'
+            name="email"
+            autoComplete="email"
             disabled={isUpdating}
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -128,7 +135,7 @@ const ProfileInformation = () => {
         </CardContent>
         <CardActions>
           <Button onClick={() => formik.resetForm()}>{t('common.reset')}</Button>
-          <LoadingButton loading={isUpdating} type='submit' variant='contained'>
+          <LoadingButton loading={isUpdating} type="submit" variant="contained">
             {t('common.update')}
           </LoadingButton>
         </CardActions>

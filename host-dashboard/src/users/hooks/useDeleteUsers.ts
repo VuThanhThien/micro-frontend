@@ -13,7 +13,7 @@ export function useDeleteUsers() {
 
   const { isLoading, mutateAsync } = useMutation(deleteUsers, {
     onSuccess: (userIds: string[]) => {
-      queryClient.setQueryData<User[]>(['users'], (oldUsers) => removeMany(oldUsers, userIds));
+      queryClient.setQueryData<User[]>(['users'], oldUsers => removeMany(oldUsers, userIds));
     },
   });
 

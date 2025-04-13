@@ -19,17 +19,17 @@ const AchievementWidget = () => {
         }}
       >
         <Avatar sx={{ bgcolor: 'secondary.main', mb: 3 }}>
-          <StarIcon color='primary' />
+          <StarIcon color="primary" />
         </Avatar>
-        <Typography gutterBottom variant='h5' component='div'>
+        <Typography gutterBottom variant="h5" component="div">
           {t('admin.home.achievement.title', { name: userInfo?.firstName })}
         </Typography>
-        <Typography marginBottom={3} variant='body2'>
+        <Typography marginBottom={3} variant="body2">
           {t('admin.home.achievement.description', {
             progress: userInfo?.progress,
           })}
         </Typography>
-        <Button color='secondary' component={RouterLink} to={`/admin/profile`} variant='contained'>
+        <Button color="secondary" component={RouterLink} to={`/admin/profile`} variant="contained">
           {t('admin.home.achievement.action')}
         </Button>
       </CardContent>

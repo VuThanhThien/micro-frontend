@@ -28,14 +28,14 @@ const SalesByCategoryWidget = () => {
     <Card>
       <CardHeader title={t('dashboard.salesByCategory.title')} />
       <CardContent>
-        <ResponsiveContainer width='99%' height={244}>
+        <ResponsiveContainer width="99%" height={244}>
           <PieChart width={244} height={244}>
             <Pie
-              dataKey='value'
+              dataKey="value"
               isAnimationActive={false}
               data={data}
-              cx='50%'
-              cy='50%'
+              cx="50%"
+              cy="50%"
               outerRadius={80}
               stroke={theme.palette.background.paper}
               strokeWidth={8}

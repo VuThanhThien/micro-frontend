@@ -69,7 +69,7 @@ function EnhancedTableHead({ onSelectAllClick, numSelected, rowCount }: Enhanced
       <TableRow sx={{ '& th': { border: 0 } }}>
         <TableCell sx={{ py: 0 }}>
           <Checkbox
-            color='primary'
+            color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
@@ -78,12 +78,12 @@ function EnhancedTableHead({ onSelectAllClick, numSelected, rowCount }: Enhanced
             }}
           />
         </TableCell>
-        {headCells.map((headCell) => (
+        {headCells.map(headCell => (
           <TableCell key={headCell.id} align={headCell.align} sx={{ py: 0 }}>
             {t(headCell.label)}
           </TableCell>
         ))}
-        <TableCell align='right' sx={{ py: 0 }}>
+        <TableCell align="right" sx={{ py: 0 }}>
           {t('userManagement.table.headers.actions')}
         </TableCell>
       </TableRow>
@@ -101,7 +101,15 @@ type UserRowProps = {
   user: User;
 };
 
-const UserRow = ({ index, onCheck, onDelete, onEdit, processing, selected, user }: UserRowProps) => {
+const UserRow = ({
+  index,
+  onCheck,
+  onDelete,
+  onEdit,
+  processing,
+  selected,
+  user,
+}: UserRowProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation();
 
@@ -134,9 +142,12 @@ const UserRow = ({ index, onCheck, onDelete, onEdit, processing, selected, user 
       selected={selected}
       sx={{ '& td': { bgcolor: 'background.paper', border: 0 } }}
     >
-      <TableCell padding='checkbox' sx={{ borderTopLeftRadius: '1rem', borderBottomLeftRadius: '1rem' }}>
+      <TableCell
+        padding="checkbox"
+        sx={{ borderTopLeftRadius: '1rem', borderBottomLeftRadius: '1rem' }}
+      >
         <Checkbox
-          color='primary'
+          color="primary"
           checked={selected}
           inputProps={{
             'aria-labelledby': labelId,
@@ -150,26 +161,29 @@ const UserRow = ({ index, onCheck, onDelete, onEdit, processing, selected, user 
             <PersonIcon />
           </Avatar>
           <Box>
-            <Typography component='div' variant='h6'>
+            <Typography component="div" variant="h6">
               {`${user.lastName} ${user.firstName}`}
             </Typography>
-            <Typography color='textSecondary' variant='body2'>
+            <Typography color="textSecondary" variant="body2">
               {user.email}
             </Typography>
           </Box>
         </Box>
       </TableCell>
-      <TableCell align='center'>{user.gender}</TableCell>
-      <TableCell align='center'>{user.role}</TableCell>
-      <TableCell align='center'>
-        {user.disabled ? <Chip label='Disabled' /> : <Chip color='primary' label='Active' />}
+      <TableCell align="center">{user.gender}</TableCell>
+      <TableCell align="center">{user.role}</TableCell>
+      <TableCell align="center">
+        {user.disabled ? <Chip label="Disabled" /> : <Chip color="primary" label="Active" />}
       </TableCell>
-      <TableCell align='right' sx={{ borderTopRightRadius: '1rem', borderBottomRightRadius: '1rem' }}>
+      <TableCell
+        align="right"
+        sx={{ borderTopRightRadius: '1rem', borderBottomRightRadius: '1rem' }}
+      >
         <IconButton
-          id='user-row-menu-button'
-          aria-label='user actions'
-          aria-controls='user-row-menu'
-          aria-haspopup='true'
+          id="user-row-menu-button"
+          aria-label="user actions"
+          aria-controls="user-row-menu"
+          aria-haspopup="true"
           aria-expanded={openActions ? 'true' : 'false'}
           disabled={processing}
           onClick={handleOpenActions}
@@ -177,9 +191,9 @@ const UserRow = ({ index, onCheck, onDelete, onEdit, processing, selected, user 
           <MoreVertIcon />
         </IconButton>
         <Menu
-          id='user-row-menu'
+          id="user-row-menu"
           anchorEl={anchorEl}
-          aria-labelledby='user-row-menu-button'
+          aria-labelledby="user-row-menu-button"
           open={openActions}
           onClose={handleCloseActions}
           anchorOrigin={{
@@ -218,7 +232,14 @@ type UserTableProps = {
   users?: User[];
 };
 
-const UserTable = ({ onDelete, onEdit, onSelectedChange, processing, selected, users = [] }: UserTableProps) => {
+const UserTable = ({
+  onDelete,
+  onEdit,
+  onSelectedChange,
+  processing,
+  selected,
+  users = [],
+}: UserTableProps) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -248,14 +269,14 @@ const UserTable = ({ onDelete, onEdit, onSelectedChange, processing, selected, u
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
   if (users.length === 0) {
-    return <Empty title='No user yet' />;
+    return <Empty title="No user yet" />;
   }
 
   return (
     <React.Fragment>
       <TableContainer>
         <Table
-          aria-labelledby='tableTitle'
+          aria-labelledby="tableTitle"
           sx={{
             minWidth: 600,
             borderCollapse: 'separate',
@@ -268,24 +289,26 @@ const UserTable = ({ onDelete, onEdit, onSelectedChange, processing, selected, u
             rowCount={users.length}
           />
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user, index) => (
-              <UserRow
-                index={index}
-                key={user.id}
-                onCheck={handleClick}
-                onDelete={onDelete}
-                onEdit={onEdit}
-                processing={processing}
-                selected={isSelected(user.id)}
-                user={user}
-              />
-            ))}
+            {users
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((user, index) => (
+                <UserRow
+                  index={index}
+                  key={user.id}
+                  onCheck={handleClick}
+                  onDelete={onDelete}
+                  onEdit={onEdit}
+                  processing={processing}
+                  selected={isSelected(user.id)}
+                  user={user}
+                />
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
-        component='div'
+        component="div"
         count={users.length}
         rowsPerPage={rowsPerPage}
         page={page}

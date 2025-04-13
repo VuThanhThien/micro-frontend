@@ -20,11 +20,11 @@ const ErrorWrapper = ({ children }: ErrorWrapperProps) => {
       fallbackRender={({ resetErrorBoundary }) => (
         <Result
           extra={
-            <Button onClick={() => resetErrorBoundary()} variant='contained'>
+            <Button onClick={() => resetErrorBoundary()} variant="contained">
               {t('common.retry')}
             </Button>
           }
-          status='error'
+          status="error"
           subTitle={t('common.errors.unexpected.subTitle')}
           title={t('common.errors.unexpected.title')}
         />

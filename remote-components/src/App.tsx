@@ -1,7 +1,7 @@
-import AppRoutes from "AppRoutes";
-import Loader from "components/Loader";
-import React from "react";
-import './index.css'
+import AppRoutes from 'AppRoutes';
+import Loader from 'components/Loader';
+import React from 'react';
+import './index.css';
 
 function App() {
   return (

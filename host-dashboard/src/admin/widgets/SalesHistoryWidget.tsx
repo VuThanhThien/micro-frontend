@@ -42,7 +42,7 @@ const SalesWidget = ({ value }: SalesWidgetProps) => {
     <Card>
       <CardHeader title={t('dashboard.salesHistory.title')} />
       <CardContent>
-        <ResponsiveContainer width='99%' height={124}>
+        <ResponsiveContainer width="99%" height={124}>
           <BarChart
             width={150}
             height={40}
@@ -52,15 +52,15 @@ const SalesWidget = ({ value }: SalesWidgetProps) => {
               left: 0,
             }}
           >
-            <Bar dataKey='uv' fill={theme.palette.primary.main} radius={[50, 50, 50, 50]} />
+            <Bar dataKey="uv" fill={theme.palette.primary.main} radius={[50, 50, 50, 50]} />
           </BarChart>
         </ResponsiveContainer>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 3 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant='h2' component='div' marginBottom={1}>
+            <Typography variant="h2" component="div" marginBottom={1}>
               {value}
             </Typography>
-            <Typography variant='body2' color='textSecondary' component='div'>
+            <Typography variant="body2" color="textSecondary" component="div">
               {t('dashboard.salesHistory.unit')}
             </Typography>
           </Box>

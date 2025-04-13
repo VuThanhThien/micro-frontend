@@ -39,7 +39,7 @@ const Profile = () => {
     <React.Fragment>
       <AdminAppBar>
         <AdminToolbar>
-          <Fab aria-label='logout' color='secondary' disabled={isLoggingOut} onClick={handleLogout}>
+          <Fab aria-label="logout" color="secondary" disabled={isLoggingOut} onClick={handleLogout}>
             <ExitToAppIcon />
           </Fab>
         </AdminToolbar>
@@ -65,16 +65,25 @@ const Profile = () => {
             >
               <PersonIcon sx={{ fontSize: 120 }} />
             </Avatar>
-            <Typography component='div' variant='h4'>{`${userInfo?.firstName} ${userInfo?.lastName}`}</Typography>
-            <Typography variant='body2'>{userInfo?.role}</Typography>
+            <Typography
+              component="div"
+              variant="h4"
+            >{`${userInfo?.firstName} ${userInfo?.lastName}`}</Typography>
+            <Typography variant="body2">{userInfo?.role}</Typography>
           </Box>
           <CircleProgressWidget height={244} title={t('profile.completion.title')} value={75} />
         </Grid>
         <Grid item xs={12} md={8} marginTop={3}>
           <Box sx={{ mb: 4 }}>
-            <Tabs aria-label='profile nav tabs' value={false}>
-              {profileMenuItems.map((item) => (
-                <Tab key={item.key} end={true} component={NavLink} label={t(item.key)} to={item.path} />
+            <Tabs aria-label="profile nav tabs" value={false}>
+              {profileMenuItems.map(item => (
+                <Tab
+                  key={item.key}
+                  end={true}
+                  component={NavLink}
+                  label={t(item.key)}
+                  to={item.path}
+                />
               ))}
             </Tabs>
           </Box>

@@ -31,34 +31,38 @@ const MeetingWidgets = () => {
 
   return (
     <React.Fragment>
-      <Typography component='h2' marginBottom={3} variant='h4'>
+      <Typography component="h2" marginBottom={3} variant="h4">
         {t('admin.home.meeting.title')}
       </Typography>
-      {meetings.map((meeting) => (
+      {meetings.map(meeting => (
         <Card key={meeting.id} sx={{ mb: 2 }}>
           <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
             <Avatar alt={`${meeting.person} avatar`} src={meeting.image} sx={{ mr: 2 }} />
             <Box sx={{ flexGrow: 1 }}>
-              <Typography component='div' variant='h6'>
+              <Typography component="div" variant="h6">
                 {meeting.person}
               </Typography>
-              <Typography variant='body2' color='textSecondary' component='div'>
+              <Typography variant="body2" color="textSecondary" component="div">
                 {meeting.date}
               </Typography>
             </Box>
-            <IconButton aria-label='Go to meeting details' component={RouterLink} to={`/admin/calendar`}>
+            <IconButton
+              aria-label="Go to meeting details"
+              component={RouterLink}
+              to={`/admin/calendar`}
+            >
               <ChevronRightIcon />
             </IconButton>
           </CardContent>
         </Card>
       ))}
       <Button
-        aria-label='Add new meeting'
-        color='secondary'
+        aria-label="Add new meeting"
+        color="secondary"
         component={RouterLink}
         fullWidth
         to={`/admin/calendar`}
-        variant='contained'
+        variant="contained"
       >
         <AddIcon />
       </Button>

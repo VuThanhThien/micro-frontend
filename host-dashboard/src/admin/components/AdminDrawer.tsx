@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { drawerCollapsedWidth, drawerWidth } from "../../core/config/layout";
+import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
+import { drawerCollapsedWidth, drawerWidth } from '../../core/config/layout';
 import {
   Box,
   ListItemAvatar,
@@ -10,17 +10,17 @@ import {
   List,
   ListItemButton,
   useTheme,
-} from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import PeopleIcon from "@mui/icons-material/People";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import HelpCenterIcon from "@mui/icons-material/HelpCenter";
-import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
-import Logo from "core/components/Logo";
+} from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import PeopleIcon from '@mui/icons-material/People';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Logo from 'core/components/Logo';
 import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
-import { useAuth } from "remoteAuth/contexts";
+import { useAuth } from 'remoteAuth/contexts';
 
 type AdminDrawerProps = {
   collapsed: boolean;
@@ -32,33 +32,33 @@ type AdminDrawerProps = {
 export const menuItems = [
   {
     icon: HomeIcon,
-    key: "admin.drawer.menu.home",
-    path: "/",
+    key: 'admin.drawer.menu.home',
+    path: '/',
   },
   {
     icon: BarChartIcon,
-    key: "admin.drawer.menu.dashboard",
-    path: "/admin/dashboard",
+    key: 'admin.drawer.menu.dashboard',
+    path: '/admin/dashboard',
   },
   {
     icon: PeopleIcon,
-    key: "admin.drawer.menu.userManagement",
-    path: "/admin/user-management",
+    key: 'admin.drawer.menu.userManagement',
+    path: '/admin/user-management',
   },
   {
     icon: AccountTreeIcon,
-    key: "admin.drawer.menu.projects",
-    path: "/admin/projects",
+    key: 'admin.drawer.menu.projects',
+    path: '/admin/projects',
   },
   {
     icon: HelpCenterIcon,
-    key: "admin.drawer.menu.help",
-    path: "/admin/help",
+    key: 'admin.drawer.menu.help',
+    path: '/admin/help',
   },
   {
     icon: ImportantDevicesIcon,
-    key: "admin.drawer.menu.vue",
-    path: "/vue",
+    key: 'admin.drawer.menu.vue',
+    path: '/vue',
   },
 ];
 
@@ -75,29 +75,29 @@ const AdminDrawer = ({
   const width = collapsed ? drawerCollapsedWidth : drawerWidth;
 
   const drawer = (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
       <Logo size={40} sx={{ ml: 4, mt: 2 }} />
       <List component="nav" sx={{ px: 2 }}>
-        {menuItems.map((item) => (
+        {menuItems.map(item => (
           <ListItemButton
             key={item.path}
             component={NavLink}
             to={item.path}
             sx={{
-              "&.active": {
+              '&.active': {
                 backgroundColor: theme.palette.action.selected,
               },
             }}
           >
             <ListItemAvatar>
-              <Avatar sx={{ color: "inherit", bgcolor: "transparent" }}>
+              <Avatar sx={{ color: 'inherit', bgcolor: 'transparent' }}>
                 <item.icon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
               primary={t(item.key)}
               sx={{
-                display: collapsed ? "none" : "block",
+                display: collapsed ? 'none' : 'block',
               }}
             />
           </ListItemButton>
@@ -115,7 +115,7 @@ const AdminDrawer = ({
             <ListItemText
               primary={`${userInfo.firstName} ${userInfo.lastName}`}
               sx={{
-                display: collapsed ? "none" : "block",
+                display: collapsed ? 'none' : 'block',
               }}
             />
           )}
@@ -127,9 +127,9 @@ const AdminDrawer = ({
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={t("admin.drawer.menu.settings")}
+            primary={t('admin.drawer.menu.settings')}
             sx={{
-              display: collapsed ? "none" : "block",
+              display: collapsed ? 'none' : 'block',
             }}
           />
         </ListItemButton>
@@ -155,9 +155,9 @@ const AdminDrawer = ({
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", lg: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
+          display: { xs: 'block', lg: 'none' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
             width: width,
           },
         }}
@@ -168,9 +168,9 @@ const AdminDrawer = ({
         variant="permanent"
         open
         sx={{
-          display: { xs: "none", lg: "block" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
+          display: { xs: 'none', lg: 'block' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
             width: width,
           },
         }}

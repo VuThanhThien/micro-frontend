@@ -34,7 +34,7 @@ const SettingsDrawer = ({ onDrawerToggle, open }: SettingsDrawerProps) => {
 
   return (
     <Drawer
-      anchor='left'
+      anchor="left"
       open={open}
       onClose={onDrawerToggle}
       sx={{
@@ -42,7 +42,7 @@ const SettingsDrawer = ({ onDrawerToggle, open }: SettingsDrawerProps) => {
           width: drawerWidth,
         },
       }}
-      variant='temporary'
+      variant="temporary"
     >
       <Box
         sx={{
@@ -52,32 +52,46 @@ const SettingsDrawer = ({ onDrawerToggle, open }: SettingsDrawerProps) => {
           p: 2,
         }}
       >
-        <Typography variant='h5'>{t('settings.drawer.title')}</Typography>
-        <IconButton color='inherit' onClick={onDrawerToggle} edge='end'>
+        <Typography variant="h5">{t('settings.drawer.title')}</Typography>
+        <IconButton color="inherit" onClick={onDrawerToggle} edge="end">
           <CloseIcon />
         </IconButton>
       </Box>
       <Box sx={{ pl: 2, pr: 2 }}>
-        <Typography gutterBottom id='settings-language' marginTop={3} variant='h6'>
+        <Typography gutterBottom id="settings-language" marginTop={3} variant="h6">
           {t('settings.drawer.language.label')}
         </Typography>
         <FormControl>
           <RadioGroup
-            aria-label='language'
-            name='language-radio-group'
+            aria-label="language"
+            name="language-radio-group"
             onChange={handleLanguageChange}
             value={i18n.language}
           >
-            <FormControlLabel value='en' control={<Radio />} label={t('settings.drawer.language.options.en')} />
-            <FormControlLabel value='fr' control={<Radio />} label={t('settings.drawer.language.options.fr')} />
+            <FormControlLabel
+              value="en"
+              control={<Radio />}
+              label={t('settings.drawer.language.options.en')}
+            />
+            <FormControlLabel
+              value="fr"
+              control={<Radio />}
+              label={t('settings.drawer.language.options.fr')}
+            />
           </RadioGroup>
         </FormControl>
-        <Typography gutterBottom id='settings-mode' marginTop={3} variant='h6'>
+        <Typography gutterBottom id="settings-mode" marginTop={3} variant="h6">
           {t('settings.drawer.mode.label')}
         </Typography>
-        <ToggleButtonGroup color='primary' value={mode} exclusive fullWidth onChange={handleModeChange}>
-          <ToggleButton value='light'>{t('settings.drawer.mode.options.light')}</ToggleButton>
-          <ToggleButton value='dark'>{t('settings.drawer.mode.options.dark')}</ToggleButton>
+        <ToggleButtonGroup
+          color="primary"
+          value={mode}
+          exclusive
+          fullWidth
+          onChange={handleModeChange}
+        >
+          <ToggleButton value="light">{t('settings.drawer.mode.options.light')}</ToggleButton>
+          <ToggleButton value="dark">{t('settings.drawer.mode.options.dark')}</ToggleButton>
         </ToggleButtonGroup>
       </Box>
     </Drawer>

@@ -72,7 +72,11 @@ const Dashboard = () => {
             title={t('dashboard.orderProgress.title')}
             value={50}
           />
-          <ProgressWidget avatar={<AttachMoneyIcon />} title={t('dashboard.salesProgress.title')} value={25} />
+          <ProgressWidget
+            avatar={<AttachMoneyIcon />}
+            title={t('dashboard.salesProgress.title')}
+            value={25}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
           <CircleProgressWidget height={204} title={t('dashboard.progress.title')} value={75} />

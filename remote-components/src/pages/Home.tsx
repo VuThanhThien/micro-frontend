@@ -1,4 +1,4 @@
-import { Title } from "components";
+import { Title } from 'components';
 
 function Home() {
   return (

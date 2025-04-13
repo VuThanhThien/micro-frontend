@@ -13,9 +13,9 @@ const AdminToolbar = ({ children, title }: AdminToolbarProps) => {
   return (
     <Toolbar sx={{ px: { xs: 3, sm: 6 } }}>
       <IconButton
-        color='inherit'
-        aria-label='open drawer'
-        edge='start'
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
         onClick={toggleDrawer}
         sx={{
           display: { lg: 'none' },
@@ -24,7 +24,7 @@ const AdminToolbar = ({ children, title }: AdminToolbarProps) => {
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant='h2' component='h1' sx={{ flexGrow: 1 }}>
+      <Typography variant="h2" component="h1" sx={{ flexGrow: 1 }}>
         {title}
       </Typography>
       {children}

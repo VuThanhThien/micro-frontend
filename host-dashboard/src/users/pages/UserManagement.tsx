@@ -38,7 +38,7 @@ const UserManagement = () => {
         snackbar.success(
           t('userManagement.notifications.addSuccess', {
             user: `${user.firstName} ${user.lastName}`,
-          }),
+          })
         );
         setOpenUserDialog(false);
       })
@@ -66,7 +66,7 @@ const UserManagement = () => {
         snackbar.success(
           t('userManagement.notifications.updateSuccess', {
             user: `${user.firstName} ${user.lastName}`,
-          }),
+          })
         );
         setOpenUserDialog(false);
       })
@@ -108,11 +108,11 @@ const UserManagement = () => {
         {!selected.length ? (
           <AdminToolbar title={t('userManagement.toolbar.title')}>
             <Fab
-              aria-label='logout'
-              color='primary'
+              aria-label="logout"
+              color="primary"
               disabled={processing}
               onClick={() => handleOpenUserDialog()}
-              size='small'
+              size="small"
             >
               <AddIcon />
             </Fab>
@@ -126,7 +126,7 @@ const UserManagement = () => {
           />
         )}
       </AdminAppBar>
-      <Box className='container'>
+      <Box className="container">
         <UserTable
           processing={processing}
           onDelete={handleOpenConfirmDeleteDialog}

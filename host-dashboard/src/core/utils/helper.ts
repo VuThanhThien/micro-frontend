@@ -33,7 +33,9 @@ export const base64ToFile = (base64String: string, fileName: string) => {
 };
 
 export const removeNullProperties = (obj: object) => {
-  return Object.fromEntries(Object.entries(obj).filter(([_key, value]) => value !== null && value !== ''));
+  return Object.fromEntries(
+    Object.entries(obj).filter(([_key, value]) => value !== null && value !== '')
+  );
 };
 
 export const formatMoneyToVND = (number: number) => {
@@ -97,5 +99,5 @@ export const isLocalhost = Boolean(
     // [::1] is the IPv6 localhost address.
     window.location.hostname === '[::1]' ||
     // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
+    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );

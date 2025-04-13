@@ -4,7 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import AdminAppBar from '../components/AdminAppBar';
 import AdminToolbar from '../components/AdminToolbar';
-import { Container, Typography, Accordion, AccordionSummary, AccordionDetails, Link } from '@mui/material';
+import {
+  Container,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Link,
+} from '@mui/material';
 
 const questions = [
   {
@@ -41,23 +48,23 @@ const Faq = () => {
       <AdminAppBar>
         <AdminToolbar />
       </AdminAppBar>
-      <Container maxWidth='sm'>
-        <Typography align='center' marginBottom={6} variant='h2'>
+      <Container maxWidth="sm">
+        <Typography align="center" marginBottom={6} variant="h2">
           {t('faq.title')}
         </Typography>
         {questions.map((question, index) => (
           <Accordion key={index}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography component='p' variant='h6'>
+              <Typography component="p" variant="h6">
                 {t(question.title)}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography color='text.secondary'>{t(question.answer)}</Typography>
+              <Typography color="text.secondary">{t(question.answer)}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
-        <Link component={RouterLink} to={`/admin/help`} variant='body2'>
+        <Link component={RouterLink} to={`/admin/help`} variant="body2">
           {t('faq.noAnswerLink')}
         </Link>
       </Container>

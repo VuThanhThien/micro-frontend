@@ -1,9 +1,9 @@
-declare module "remoteComponents/components" {
-  import React from "react";
+declare module 'remoteComponents/components' {
+  import React from 'react';
 
-  interface ITitleProps extends React.ComponentProps<"h2"> {
+  interface ITitleProps extends React.ComponentProps<'h2'> {
     children?: React.ReactNode;
-    size?: "xl" | "lg" | "base";
+    size?: 'xl' | 'lg' | 'base';
   }
 
   const Title: React.FC<ITitleProps>;
@@ -11,16 +11,16 @@ declare module "remoteComponents/components" {
   const Footer: React.FC;
 }
 
-declare module "remoteComponents/pages" {
-  import React from "react";
+declare module 'remoteComponents/pages' {
+  import React from 'react';
 
   const Forbidden: React.FC;
   const NotFound: React.FC;
   const UnderConstructions: React.FC;
 }
 
-declare module "remoteComponents/contexts" {
-  import React from "react";
+declare module 'remoteComponents/contexts' {
+  import React from 'react';
 
   interface SnackbarContextInterface {
     error: (newMessage: string) => void;
@@ -39,15 +39,15 @@ declare module "remoteComponents/contexts" {
 }
 
 // MF auth
-declare module "remoteAuth/pages" {
+declare module 'remoteAuth/pages' {
   const Register: () => JSX.Element;
   const ForgotPassword: () => JSX.Element;
   const Login: () => JSX.Element;
   const ForgotPasswordSubmit: () => JSX.Element;
 }
 
-declare module "remoteAuth/contexts" {
-  import React from "react";
+declare module 'remoteAuth/contexts' {
+  import React from 'react';
 
   interface AuthContextInterface {
     hasRole: (roles?: string[]) => {};
@@ -69,7 +69,7 @@ declare module "remoteAuth/contexts" {
   function useAuth(): AuthContextInterface;
 }
 
-declare module "remoteVue/pages" {
+declare module 'remoteVue/pages' {
   const mount: (el: HTMLElement) => {
     unmount: () => void;
   };

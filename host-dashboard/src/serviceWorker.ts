@@ -6,7 +6,7 @@ const setup = async () => {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker
       .register('/service-worker.js')
-      .then((registration) => {
+      .then(registration => {
         registration.onupdatefound = () => {
           const installingWorker = registration.installing;
           if (installingWorker == null) {
@@ -20,7 +20,7 @@ const setup = async () => {
               if (navigator.serviceWorker.controller) {
                 console.log(
                   `New content is available and will be used when all tabs 
-                  for this page are closed. See https://bit.ly/CRA-PWA.`,
+                  for this page are closed. See https://bit.ly/CRA-PWA.`
                 );
               } else {
                 console.log('Content is cached for offline use.');
@@ -29,7 +29,7 @@ const setup = async () => {
           };
         };
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error during service worker registration:', error);
       });
 

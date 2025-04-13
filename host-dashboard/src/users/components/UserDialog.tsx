@@ -58,7 +58,9 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
       role: user ? user.role : '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email(t('common.validations.email')).required(t('common.validations.required')),
+      email: Yup.string()
+        .email(t('common.validations.email'))
+        .required(t('common.validations.required')),
       firstName: Yup.string()
         .max(20, t('common.validations.max', { size: 20 }))
         .required(t('common.validations.required')),
@@ -71,20 +73,20 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
   });
 
   return (
-    <Dialog open={open} onClose={onClose} aria-labelledby='user-dialog-title'>
+    <Dialog open={open} onClose={onClose} aria-labelledby="user-dialog-title">
       <form onSubmit={formik.handleSubmit} noValidate>
-        <DialogTitle id='user-dialog-title'>
+        <DialogTitle id="user-dialog-title">
           {editMode ? t('userManagement.modal.edit.title') : t('userManagement.modal.add.title')}
         </DialogTitle>
         <DialogContent>
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='lastName'
+            id="lastName"
             label={t('userManagement.form.lastName.label')}
-            name='lastName'
-            autoComplete='family-name'
+            name="lastName"
+            autoComplete="family-name"
             autoFocus
             disabled={processing}
             value={formik.values.lastName}
@@ -93,29 +95,29 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
             helperText={formik.touched.lastName && formik.errors.lastName}
           />
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='firstName'
+            id="firstName"
             label={t('userManagement.form.firstName.label')}
-            name='firstName'
-            autoComplete='given-name'
+            name="firstName"
+            autoComplete="given-name"
             disabled={processing}
             value={formik.values.firstName}
             onChange={formik.handleChange}
             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
             helperText={formik.touched.firstName && formik.errors.firstName}
           />
-          <FormControl component='fieldset' margin='normal'>
-            <FormLabel component='legend'>{t('userManagement.form.gender.label')}</FormLabel>
+          <FormControl component="fieldset" margin="normal">
+            <FormLabel component="legend">{t('userManagement.form.gender.label')}</FormLabel>
             <RadioGroup
               row
-              aria-label='gender'
-              name='gender'
+              aria-label="gender"
+              name="gender"
               value={formik.values.gender}
               onChange={formik.handleChange}
             >
-              {genders.map((gender) => (
+              {genders.map(gender => (
                 <FormControlLabel
                   key={gender.value}
                   disabled={processing}
@@ -127,13 +129,13 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
             </RadioGroup>
           </FormControl>
           <TextField
-            margin='normal'
+            margin="normal"
             required
             fullWidth
-            id='email'
+            id="email"
             label={t('userManagement.form.email.label')}
-            name='email'
-            autoComplete='email'
+            name="email"
+            autoComplete="email"
             disabled={processing}
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -141,28 +143,28 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
-            margin='normal'
+            margin="normal"
             required
-            id='role'
+            id="role"
             disabled={processing}
             fullWidth
             select
             label={t('userManagement.form.role.label')}
-            name='role'
+            name="role"
             value={formik.values.role}
             onChange={formik.handleChange}
             error={formik.touched.role && Boolean(formik.errors.role)}
             helperText={formik.touched.role && formik.errors.role}
           >
-            {roles.map((role) => (
+            {roles.map(role => (
               <MenuItem key={role} value={role}>
                 {role}
               </MenuItem>
             ))}
           </TextField>
-          <FormControl component='fieldset' margin='normal'>
+          <FormControl component="fieldset" margin="normal">
             <FormControlLabel
-              name='disabled'
+              name="disabled"
               disabled={processing}
               onChange={formik.handleChange}
               checked={formik.values.disabled}
@@ -173,8 +175,10 @@ const UserDialog = ({ onAdd, onClose, onUpdate, open, processing, user }: UserDi
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>{t('common.cancel')}</Button>
-          <LoadingButton loading={processing} type='submit' variant='contained'>
-            {editMode ? t('userManagement.modal.edit.action') : t('userManagement.modal.add.action')}
+          <LoadingButton loading={processing} type="submit" variant="contained">
+            {editMode
+              ? t('userManagement.modal.edit.action')
+              : t('userManagement.modal.add.action')}
           </LoadingButton>
         </DialogActions>
       </form>

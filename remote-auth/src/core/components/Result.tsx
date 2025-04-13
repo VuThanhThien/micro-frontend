@@ -12,9 +12,9 @@ const ResultImage = ({ customImage, status }: ResultImageProps) => {
 
   if (!image) {
     if (status === 'error') {
-      image = <img src={'assets/error.svg'} alt='Logo' />;
+      image = <img src={'assets/error.svg'} alt="Logo" />;
     } else if (status === 'success') {
-      image = <img src={'assets/succes.svg'} alt='Logo' />;
+      image = <img src={'assets/succes.svg'} alt="Logo" />;
     }
   }
 
@@ -37,10 +37,10 @@ const Result = ({ extra, image, maxWidth = 'xs', status, subTitle, title }: Resu
         <SvgContainer>
           <ResultImage customImage={image} status={status} />
         </SvgContainer>
-        <Typography gutterBottom variant='h5'>
+        <Typography gutterBottom variant="h5">
           {title}
         </Typography>
-        {subTitle && <Typography variant='body2'>{subTitle}</Typography>}
+        {subTitle && <Typography variant="body2">{subTitle}</Typography>}
         {extra && <Box sx={{ mt: 4, textAlign: 'center' }}>{extra}</Box>}
       </Box>
     </Container>
