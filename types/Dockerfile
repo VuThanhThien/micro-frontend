@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 node:20.11.1-alpine
 WORKDIR /app
 
 # Install pnpm and typescript globally
-RUN npm install -g pnpm@latest typescript
+RUN npm install -g pnpm@9.15.9 typescript
 
 # Copy workspace config first
 COPY pnpm-workspace.yaml ./

@@ -7,7 +7,7 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++
 
 # Install pnpm and typescript globally
-RUN npm install -g pnpm@latest typescript
+RUN npm install -g pnpm@9.15.9 typescript
 
 # Copy workspace config first
 COPY pnpm-workspace.yaml ./
