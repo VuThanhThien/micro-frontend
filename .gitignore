@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ADF local settings
+.claude/settings.local.json
+repomix-output.xml

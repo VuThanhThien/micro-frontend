@@ -44,10 +44,10 @@ const AppRoutes = () => {
           </Route>
           <Route path="projects" element={<Navigate to="/under-construction" replace />} />
           <Route path="user-management" element={<UserManagement />} />
+          <Route path="vue" element={<VueDashboard />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/forgot-password-submit" element={<ForgotPasswordSubmit />} />
-        <Route path="/vue" element={<VueDashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/under-construction" element={<UnderConstructions />} />

@@ -58,7 +58,7 @@ export const menuItems = [
   {
     icon: ImportantDevicesIcon,
     key: 'admin.drawer.menu.vue',
-    path: '/vue',
+    path: '/admin/vue',
   },
 ];
 

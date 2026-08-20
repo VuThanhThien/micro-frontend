@@ -1,0 +1,15 @@
+# Generated output
+repomix-output.xml
+
+# Local and dependency files
+.git
+.storybook
+.vscode
+node_modules
+
+# Build and test artifacts
+dist
+coverage
+*.log
+
+# Development-only fixtures and generated templates
