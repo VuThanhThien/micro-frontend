@@ -73,6 +73,12 @@ services:
       args:
         - VITE_APP_NAME=${VITE_DASHBOARD_APP_NAME:-Micro Front-end}
         - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
+        # Remote base URLs baked into the host bundle at build time.
+        # Default to the published localhost ports; set these to Docker service
+        # names (e.g. http://remote-vue:80) when serving behind an ingress.
+        - VITE_REMOTE_COMPONENTS_URL=${VITE_REMOTE_COMPONENTS_URL:-http://localhost:3002}
+        - VITE_REMOTE_AUTH_URL=${VITE_REMOTE_AUTH_URL:-http://localhost:3001}
+        - VITE_REMOTE_VUE_URL=${VITE_REMOTE_VUE_URL:-http://localhost:3003}
     env_file:
       - ./host-dashboard/.env
     environment:

@@ -14,10 +14,19 @@ production-like deployment.
 
 Each app reads `.env` / `.env.example` for:
 
-| Variable            | Default                 | Used by                              |
-| ------------------- | ----------------------- | ------------------------------------ |
-| `VITE_APP_NAME`     | e.g. `Micro Front-end`  | host, remote-auth, remote-components |
-| `VITE_BASE_API_URL` | `http://localhost:8080` | all apps                             |
+| Variable                     | Default                 | Used by                              |
+| ---------------------------- | ----------------------- | ------------------------------------ |
+| `VITE_APP_NAME`              | e.g. `Micro Front-end`  | host, remote-auth, remote-components |
+| `VITE_BASE_API_URL`          | `http://localhost:8080` | all apps                             |
+| `VITE_REMOTE_COMPONENTS_URL` | `http://localhost:3002` | host (federation remote)             |
+| `VITE_REMOTE_AUTH_URL`       | `http://localhost:3001` | host (federation remote)             |
+| `VITE_REMOTE_VUE_URL`        | `http://localhost:3003` | host (federation remote)             |
+
+> `VITE_REMOTE_*_URL` override the Module Federation remote base URLs baked into
+> the host bundle at build time. Defaults point at the published localhost ports.
+> For an internal deployment set them to service names (e.g.
+> `http://remote-components:80`, `http://remote-auth:80`, `http://remote-vue:80`)
+> in front of an ingress/reverse proxy.
 
 Generate `.env` files from templates:
 
@@ -99,9 +108,26 @@ docker compose down
 
 ### Build args
 
-`VITE_APP_NAME` and `VITE_BASE_API_URL` are passed as build arguments with
-defaults (see `docker-compose.yml`), and each service also reads its own
-`./<app>/.env`.
+`VITE_APP_NAME`, `VITE_BASE_API_URL`, and (for the host) `VITE_REMOTE_*_URL` are
+passed as build arguments with defaults (see `docker-compose.yml`), and each
+service also reads its own `./<app>/.env`.
+
+The host's remote URLs default to the published localhost ports:
+
+```bash
+VITE_REMOTE_COMPONENTS_URL=${VITE_REMOTE_COMPONENTS_URL:-http://localhost:3002}
+VITE_REMOTE_AUTH_URL=${VITE_REMOTE_AUTH_URL:-http://localhost:3001}
+VITE_REMOTE_VUE_URL=${VITE_REMOTE_VUE_URL:-http://localhost:3003}
+```
+
+Override them to route the host to internal service names behind an ingress:
+
+```bash
+VITE_REMOTE_COMPONENTS_URL=http://remote-components:80 \
+VITE_REMOTE_AUTH_URL=http://remote-auth:80 \
+VITE_REMOTE_VUE_URL=http://remote-vue:80 \
+docker compose build host-dashboard
+```
 
 ## 6. Docker Image Anatomy
 

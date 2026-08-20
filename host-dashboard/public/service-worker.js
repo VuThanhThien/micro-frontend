@@ -25,13 +25,13 @@ self.addEventListener('notificationclick', event => {
   event.notification.close();
 });
 
-const urlsToCache = ['/', 'index.html', '404.html'];
+// const urlsToCache = ['/', 'index.html', '404.html'];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    (async () => {
-      const cache = await caches.open('pwa-assets');
-      return cache.addAll(urlsToCache);
-    })()
-  );
-});
+// self.addEventListener('install', event => {
+//   event.waitUntil(
+//     (async () => {
+//       const cache = await caches.open('pwa-assets');
+//       return cache.addAll(urlsToCache);
+//     })()
+//   );
+// });

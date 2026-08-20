@@ -87,6 +87,12 @@ make docker-up
 COMPOSE_BAKE=true docker compose up --build
 ```
 
+The host's Module Federation remote URLs are configurable via
+`VITE_REMOTE_COMPONENTS_URL`, `VITE_REMOTE_AUTH_URL`, and `VITE_REMOTE_VUE_URL`
+(see `host-dashboard/.env.example` and `docker-compose.yml`). They default to
+the published localhost ports (`3001`/`3002`/`3003`); set them to Docker service
+names when serving behind an ingress.
+
 See [docs/deployment-guide.md](docs/deployment-guide.md) for full details.
 
 ## Documentation
