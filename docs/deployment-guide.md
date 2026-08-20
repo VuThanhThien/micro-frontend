@@ -165,7 +165,8 @@ Then in the browser:
 
 1. Load <http://localhost:3000> — expect the host shell.
 2. Navigate to `/login`, `/register` — expect `remote-auth` pages.
-3. Visit `/vue` — expect the Vue dashboard mounted.
+3. Visit `/admin/vue` — expect the Vue dashboard mounted (with router-driven
+   tabs and shared Pinia state).
 4. Visit a bad path — expect `/404` from `remote-components`.
 5. Open DevTools → Network: confirm remote entries are fetched from 3001/3002/3003
    and that only **one** React instance loads (shared deps work).

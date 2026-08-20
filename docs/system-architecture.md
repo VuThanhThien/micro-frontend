@@ -110,9 +110,23 @@ function. The host's `vue/pages/Dashboard` wrapper obtains an element and calls
 ```ts
 import { mount } from 'remoteVue/pages';
 
-const app = mount(container);
+const app = mount(container, {
+  basename: '/admin/vue',
+  onNavigate: path => navigate(path),
+});
+app.setHostPath(location.pathname); // host -> Vue sync
 // on unmount: app.unmount();
 ```
+
+Because the Vue app runs inside a React Router host, the embedded Vue Router
+uses **memory history** (`createMemoryHistory`) so the two routers never fight
+over `window.history`. Navigation is bridged in both directions:
+
+- **Vue → host:** the Vue router's global guard forwards paths it does not own
+  to `onNavigate` (the host's React Router `navigate`).
+- **host → Vue:** the wrapper calls `setHostPath(path)` whenever the host URL
+  changes; the path is mapped (basename stripped) and applied to the Vue memory
+  router only when it matches a real Vue route.
 
 ## 3. Data Flow
 
@@ -155,7 +169,10 @@ Component (React Query / custom hook)
   heavy or seldom-used pages use `React.lazy`.
 - Remote **pages** (`Login`, `Register`, error pages) are imported directly
   from remote modules and rendered inside host routes; navigation stays within
-  the host's React Router instance (shared `react-router-dom`).
+  the host's React Router instance (shared `react-router-dom` and `react-router`).
+- The **Vue remote** is embedded with a memory-history Vue Router and a
+  bidirectional bridge (see §2.3), so the host remains the single source of
+  truth for the URL and no `pushState`/`popstate` conflict occurs.
 
 ## 4. Deployment Topology
 

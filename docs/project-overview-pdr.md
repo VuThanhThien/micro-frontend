@@ -47,31 +47,31 @@ The project is a **PNPM workspace monorepo** containing:
 
 ### 3.1 Functional Requirements
 
-| ID    | Requirement            | Detail                                                                                            | App                           |
-| ----- | ---------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------- |
-| FR-01 | Host shell & routing   | Serve the landing page, guarded admin area, and wildcard/404 handling.                            | host-dashboard                |
-| FR-02 | Authentication flow    | Login, register, forgot password (submit/reset), session/logout.                                  | remote-auth (exposed to host) |
-| FR-03 | User management        | Admin page for managing users.                                                                    | host-dashboard                |
-| FR-04 | Profile management     | Profile overview, activity, information, password update.                                         | host-dashboard                |
-| FR-05 | Dashboard widgets      | Charts, budgets, activity, sales, notifications, calendar.                                        | host-dashboard + remote-vue   |
-| FR-06 | Reusable UI components | Title/Footer, app status pages (404/403/under construction), snackbar/toast context.              | remote-components             |
-| FR-07 | Vue widgets            | A Vue 3 dashboard page composition integrated into the host shell.                                | remote-vue                    |
-| FR-08 | Error & empty states   | Forbidden (403), Not Found (404), Under Construction pages.                                       | remote-components             |
-| FR-09 | Localization (i18n)    | Label/message translation via i18next across React remotes.                                       | host + React remotes          |
-| FR-10 | Mocked data            | Realistic mock API via axios-mock-adapter (users, notifications, activity logs, profile, events). | host-dashboard (mocks)        |
+| ID    | Requirement            | Detail                                                                                                                                                      | App                           |
+| ----- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| FR-01 | Host shell & routing   | Serve the landing page, guarded admin area, and wildcard/404 handling.                                                                                      | host-dashboard                |
+| FR-02 | Authentication flow    | Login, register, forgot password (submit/reset), session/logout.                                                                                            | remote-auth (exposed to host) |
+| FR-03 | User management        | Admin page for managing users.                                                                                                                              | host-dashboard                |
+| FR-04 | Profile management     | Profile overview, activity, information, password update.                                                                                                   | host-dashboard                |
+| FR-05 | Dashboard widgets      | Charts, budgets, activity, sales, notifications, calendar.                                                                                                  | host-dashboard + remote-vue   |
+| FR-06 | Reusable UI components | Title/Footer, app status pages (404/403/under construction), snackbar/toast context.                                                                        | remote-components             |
+| FR-07 | Vue widgets            | A Vue 3 dashboard composition integrated into the host shell, with Vue-Router tab pages and Pinia state, embedded via a memory-history + navigation bridge. | remote-vue                    |
+| FR-08 | Error & empty states   | Forbidden (403), Not Found (404), Under Construction pages.                                                                                                 | remote-components             |
+| FR-09 | Localization (i18n)    | Label/message translation via i18next across React remotes.                                                                                                 | host + React remotes          |
+| FR-10 | Mocked data            | Realistic mock API via axios-mock-adapter (users, notifications, activity logs, profile, events).                                                           | host-dashboard (mocks)        |
 
 ### 3.2 Non-Functional Requirements
 
-| ID     | Requirement      | Target / Notes                                                                                                                                  |
-| ------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| NFR-01 | Performance      | Lazy-load remote modules and heavy pages via `React.lazy` + `Suspense`; Minify disabled, CSS code-splitting off (kept simple for the demo).     |
-| NFR-02 | Availability     | Remotes must be reachable before the host loads them; otherwise the host shows its fallback loader.                                             |
-| NFR-03 | Consistency      | Shared dependencies (react, react-dom, MUI, axios, i18next, …) are declared `shared` in Module Federation to avoid duplicate runtime instances. |
-| NFR-04 | Type safety      | Cross-app modules typed through the shared `types` package (`mf-app-types`).                                                                    |
-| NFR-05 | Code quality     | ESLint (`typescript-eslint`), Prettier (`format:all`), Husky + lint-staged on commit.                                                           |
-| NFR-06 | Deployability    | Each app containerized (Dockerfile + nginx.conf) and served on its own port; orchestrated by `docker-compose`.                                  |
-| NFR-07 | SEO/PWA          | host-dashboard ships a service worker + PWA manifest via `vite-plugin-pwa`.                                                                     |
-| NFR-08 | Security headers | nginx configuration adds X-Frame-Options, X-XSS-Protection, X-Content-Type-Options.                                                             |
+| ID     | Requirement      | Target / Notes                                                                                                                                                      |
+| ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NFR-01 | Performance      | Lazy-load remote modules and heavy pages via `React.lazy` + `Suspense`; Minify disabled, CSS code-splitting off (kept simple for the demo).                         |
+| NFR-02 | Availability     | Remotes must be reachable before the host loads them; otherwise the host shows its fallback loader.                                                                 |
+| NFR-03 | Consistency      | Shared dependencies (react, react-dom, react-router(-dom), MUI, axios, i18next, …) are declared `shared` in Module Federation to avoid duplicate runtime instances. |
+| NFR-04 | Type safety      | Cross-app modules typed through the shared `types` package (`mf-app-types`).                                                                                        |
+| NFR-05 | Code quality     | ESLint (`typescript-eslint`), Prettier (`format:all`), Husky + lint-staged on commit.                                                                               |
+| NFR-06 | Deployability    | Each app containerized (Dockerfile + nginx.conf) and served on its own port; orchestrated by `docker-compose`.                                                      |
+| NFR-07 | SEO/PWA          | host-dashboard ships a service worker + PWA manifest via `vite-plugin-pwa`.                                                                                         |
+| NFR-08 | Security headers | nginx configuration adds X-Frame-Options, X-XSS-Protection, X-Content-Type-Options.                                                                                 |
 
 ## 4. Business Context
 

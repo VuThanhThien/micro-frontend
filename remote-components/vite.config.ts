@@ -30,6 +30,7 @@ export default defineConfig({
         'react',
         'react-dom',
         'react-router-dom',
+        'react-router',
         'i18next',
         'react-i18next',
         '@mui/material',

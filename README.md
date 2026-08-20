@@ -23,6 +23,9 @@ Vue-based widgets — each deployed independently and composed at runtime.
 - **Shared state & types** between micro frontends (`types` package)
 - **Modern UI** with TailwindCSS 4 + MUI + shadcn-style components
 - **State/data fetching** with React Query, Pinia, and Vue Router
+- **Cross-framework navigation bridge** — the Vue remote runs on a
+  memory-history router so Vue Router and React Router never conflict over
+  `window.history`; the host stays the single source of truth for the URL
 - **i18n** via i18next across the React remotes
 - **Monorepo** management with PNPM Workspace
 - **Code quality**: ESLint + Prettier + Husky git hooks + lint-staged

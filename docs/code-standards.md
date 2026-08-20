@@ -100,6 +100,7 @@ ModuleFederationPlugin({
     'react-dom',
     'axios',
     'react-router-dom',
+    'react-router',
     'i18next',
     'react-i18next',
     '@mui/material',
@@ -133,28 +134,53 @@ Standards:
    (Vite emits `assets/remoteEntry.js`).
 3. **Ports must not conflict**: host 3000, auth 3001, components 3002, vue 3003.
 4. **Shared dependencies** must enumerate all duplicated libraries
-   (react, react-dom, axios, react-router-dom, i18next, react-i18next, MUI,
-   react-query, formik) so only one instance loads.
+   (react, react-dom, axios, react-router-dom, react-router, i18next,
+   react-i18next, MUI, react-query, formik) so only one instance loads.
+   `react-router` is shared alongside `react-router-dom` so the React Router
+   context is a single instance across host/remotes (both pinned at 7.4.0).
 5. **Start remotes before the host** — the host lazy-loads them at runtime.
 6. **Expose modules via the shared `types` package** to keep typings in sync.
 
 ### Cross-framework bridging (remote-vue)
 
-Vue exposes a `mount` function instead of components:
+Vue cannot expose React components, so `./pages` exposes a `mount` function
+that returns an imperative handle. Because Vue Router and React Router both
+own `window.history` (`pushState`/`popstate`), the embedded Vue router must
+**not** use browser history — it uses `createMemoryHistory` and delegates
+host-owned paths through a navigation bridge:
 
 ```ts
 // './pages' → exposes: { './pages': './src/exposes/pages' }
-export const mount = (el: HTMLElement) => {
-  // ... createApp + Pinia + router
+export const mount = (
+  el: HTMLElement,
+  options?: {
+    basename?: string; // e.g. '/admin/vue'
+    onNavigate?: (path: string) => void; // Vue -> host (React Router navigate)
+  }
+) => {
+  // createApp + install Pinia + install memory-history router
   return {
     unmount: () => {
       /* cleanup */
+    },
+    setHostPath: (path: string) => {
+      /* host -> Vue sync */
     },
   };
 };
 ```
 
-Consumers call `mount(el)` and use the returned `unmount()`.
+Rules:
+
+- **Vue Router uses memory history when embedded** (standalone mode keeps
+  `createWebHistory`). The Vue router never writes to the browser URL.
+- The **host owns the URL** — the host's `VueWrapper` injects React Router's
+  `navigate` as `onNavigate` and calls `setHostPath` on location changes.
+- In the Vue router, a `beforeEach` guard forwards paths Vue does not own (a
+  `host-redirect` catch-all route) to `onNavigate` instead of navigating
+  internally.
+- Update `types/index.d.ts` (`remoteVue/pages`) whenever the `mount`
+  signature changes.
 
 ## 5. Shared Modules Contract (`types` package)
 

@@ -59,7 +59,7 @@ React 18 shell. Consumes `remoteComponents`, `remoteAuth`, `remoteVue`.
 | `/`                                                                  | Landing                                                                                                                                                           |
 | `/admin`                                                             | Admin layout → index Home; `dashboard`, `faq`, `help`, `profile` (+ `information`, `password`, `activity`), `projects` → `/under-construction`, `user-management` |
 | `/login`, `/register`, `/forgot-password`, `/forgot-password-submit` | Remote auth pages                                                                                                                                                 |
-| `/vue`                                                               | VueDashboard (Vue remote)                                                                                                                                         |
+| `/admin/vue`                                                         | VueDashboard (Vue remote, embedded with memory-history router + navigation bridge)                                                                                |
 | `/under-construction`, `/403`, `/404`                                | Remote component pages                                                                                                                                            |
 | `*`                                                                  | Redirect → `/404`                                                                                                                                                 |
 
@@ -106,18 +106,47 @@ Reusable React UI component library (Vite 5). Exposes `./components`,
 ## Package: `remote-vue` (port 3003, remote)
 
 Vue 3 module. Exposes `./pages` → `src/exposes/pages` via a `mount`
-function (`{ mount: (el) => ({ unmount }) }`) for cross-framework micro
-frontends. Uses Pinia, Vue Router 4, TailwindCSS 4, reka-ui/radix-vue,
-lucide-vue-next, @vueuse/core, @unovis/vue charts, class-variance-authority,
-tailwind-merge, @iconify/vue, and `rollup-plugin-visualizer` (emits
-`stats.html`).
+function for cross-framework micro frontends. Uses Pinia, Vue Router 4,
+TailwindCSS 4, reka-ui/radix-vue, lucide-vue-next, @vueuse/core,
+@unovis/vue charts, class-variance-authority, tailwind-merge, @iconify/vue,
+and `rollup-plugin-visualizer` (emits `stats.html`).
+
+### Cross-framework bridge (embedding into the React host)
+
+`mount(el, options?)` builds a Vue app, installs **Pinia** and a Vue Router,
+and returns `{ unmount, setHostPath }`:
+
+```ts
+// options: { basename?: string; onNavigate?: (path: string) => void }
+mount(container, {
+  basename: '/admin/vue',
+  onNavigate: path => navigate(path), // host React Router navigation
+});
+app.setHostPath(location.pathname); // host -> Vue sync
+// on unmount: app.unmount();
+```
+
+The embedded router uses **memory history** (`createMemoryHistory`) so it never
+touches `window.history` — avoiding a `pushState`/`popstate` conflict with the
+host's React Router `BrowserRouter`. Host-owned paths are forwarded to the host
+via the injected `onNavigate` callback; host URL changes are pushed back into
+Vue via `setHostPath`. See [System Architecture §2.3](system-architecture.md).
 
 ### `src/` layout
 
 `assets/`, `components/` (Dashboard, Layout, LayoutConfigurator, `ui/`
-shadcn-style), `exposes/` (pages), `layouts/` (partials), `lib/`, `router/`,
-`stores/`, `views/`, `App.vue`, `main.ts` (createApp + Pinia + router),
-`style.css`, `components.json`.
+shadcn-style), `exposes/` (pages — the `mount` bridge), `layouts/` (partials),
+`lib/`, `router/` (`index.ts` factory `createAppRouter`, `routes.ts`),
+`stores/` (`dashboard.store.ts`, `theme.store.ts`), `views/` (`dashboard/`
+Overview/Analytics/Reports/Notifications pages; `HomeView.vue`), `App.vue`,
+`main.ts` (standalone: createApp + Pinia + router), `style.css`,
+`components.json`.
+
+**Dashboard tabs (router + Pinia demo)**: each tab is a named Vue route
+(`/`, `/analytics`, `/reports`, `/notifications`) and its own view; `Dashboard.vue`
+drives selection via `useRoute`/`useRouter` and shares state through the
+`dashboard.store.ts` Pinia store. A "Go to Admin Dashboard" button in
+OverviewView delegates to the host route `/admin/dashboard` through the bridge.
 
 **Env**: `VITE_BASE_API_URL=http://localhost:8080`.
 

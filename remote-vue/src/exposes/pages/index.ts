@@ -1,5 +1,17 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import Dashboard from '@/components/Dashboard.vue';
+import { createAppRouter, HOST_REDIRECT_ROUTE_NAME } from '@/router';
+
+export interface VueMountOptions {
+  /**
+   * Base path under which the Vue app is mounted in the host (e.g. `/admin/vue`).
+   * Used to map host locations back to Vue-internal routes.
+   */
+  basename?: string;
+  /** Forwards Vue-initiated navigation to the host router (React Router). */
+  onNavigate?: (path: string) => void;
+}
 
 /**
  * The Vue micro-frontend inherits the theme of the parent host app.
@@ -22,7 +34,23 @@ const readHostIsDark = (): boolean => {
   return htmlDark || storedDark;
 };
 
-export const mount = (el: HTMLElement) => {
+/** Maps a host path to a Vue-internal path, or returns `null` when outside the Vue base. */
+const stripBasename = (path: string, basename?: string): string | null => {
+  const base = basename ?? '/';
+  if (base === '/' || base === '') {
+    return path === '' ? '/' : path;
+  }
+  const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  if (path === normalizedBase) return '/';
+  if (path.startsWith(`${normalizedBase}/`)) {
+    return path.slice(normalizedBase.length) || '/';
+  }
+  return null;
+};
+
+export const mount = (el: HTMLElement, options: VueMountOptions = {}) => {
+  const { basename = '/', onNavigate } = options;
+
   // Base typography/background resolved from the container's design tokens
   // (these adapt automatically when the `dark` class below is toggled).
   el.style.color = 'var(--foreground)';
@@ -48,8 +76,30 @@ export const mount = (el: HTMLElement) => {
     attributeFilter: ['class'],
   });
 
+  // Embedded mode uses memory history so the Vue router never fights the host's
+  // React Router over `window.history`. Host-owned paths are delegated via
+  // `onNavigate` (the host's React Router navigate).
+  const router = createAppRouter({ mode: 'embedded', onNavigate });
+
   const app = createApp(Dashboard);
+  const pinia = createPinia();
+  app.use(pinia);
+  app.use(router);
   app.mount(el);
+
+  const setHostPath = (path: string) => {
+    const vuePath = stripBasename(path, basename);
+    if (vuePath === null) {
+      // Host navigated outside the Vue app; nothing to sync.
+      return;
+    }
+    const resolved = router.resolve(vuePath);
+    if (resolved.name !== HOST_REDIRECT_ROUTE_NAME) {
+      void router.replace(vuePath).catch(() => {});
+    }
+    // Else: the path is under the Vue base but not a real Vue route. Intentionally
+    // dropped (never re-enters the guard), which keeps host->Vue sync loop-free.
+  };
 
   return {
     unmount: () => {
@@ -57,5 +107,6 @@ export const mount = (el: HTMLElement) => {
       window.removeEventListener('storage', onStorage);
       observer.disconnect();
     },
+    setHostPath,
   };
 };

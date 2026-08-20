@@ -45,6 +45,7 @@ export default defineConfig({
         'react-dom',
         'axios',
         'react-router-dom',
+        'react-router',
         'i18next',
         'react-i18next',
         '@mui/material',

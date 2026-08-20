@@ -25,14 +25,10 @@ const handleNavigation = (url: string) => {
     window.open(url, '_blank')
     return
   }
-  
-  // Nếu URL bắt đầu bằng /react/ thì chuyển hướng đến ứng dụng React
-  if (url.startsWith('/react/')) {
-    window.location.href = url
-    return
-  }
-  
-  // Các URL khác sẽ được xử lý bởi Vue Router
+
+  // Host-owned paths are forwarded by the router's global guard to the host's
+  // React Router (or to a full navigation when running standalone). Vue-internal
+  // paths are handled by Vue Router itself.
   router.push(url)
 }
 

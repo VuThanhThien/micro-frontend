@@ -27,6 +27,12 @@ The repository already delivers:
 
 De-risk the foundation before scaling.
 
+- [x] **Resolve the Vue↔React router conflict.** `remote-vue` now embeds with a
+      memory-history Vue Router plus a bidirectional navigation bridge
+      (`onNavigate` Vue→host, `setHostPath` host→Vue), and `react-router` is
+      shared so the React Router context is a single instance. The host remains
+      the single source of truth for the URL (see
+      [System Architecture §2.3](system-architecture.md)).
 - [ ] **Version + auto-publish the `types` contract.** Convert `mf-app-types`
       usage to a strict, hand-maintained contract with an explicit upgrade
       guide; add a small `scripts/verify-contract` check in CI.

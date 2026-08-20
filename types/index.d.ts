@@ -71,8 +71,17 @@ declare module 'remoteAuth/contexts' {
 }
 
 declare module 'remoteVue/pages' {
-  const mount: (el: HTMLElement) => {
+  interface VueMountOptions {
+    basename?: string;
+    onNavigate?: (path: string) => void;
+  }
+
+  const mount: (
+    el: HTMLElement,
+    options?: VueMountOptions
+  ) => {
     unmount: () => void;
+    setHostPath: (path: string) => void;
   };
 }
 
