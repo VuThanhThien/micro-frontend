@@ -8,6 +8,8 @@ interface AuthContextInterface {
   hasRole: (roles?: string[]) => {};
   isLoggingIn: boolean;
   isLoggingOut: boolean;
+  /** True while the auth session (user info) is still being resolved. */
+  isLoading: boolean;
   login: (email: string, password: string) => Promise<any>;
   logout: () => Promise<any>;
   userInfo?: UserInfo;
@@ -24,7 +26,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const { isLoggingIn, login } = useLogin();
   const { isLoggingOut, logout } = useLogout();
-  const { data: userInfo } = useUserInfo(authKey);
+  const { data: userInfo, isLoading } = useUserInfo(authKey);
 
   const hasRole = (roles?: string[]) => {
     if (!roles || roles.length === 0) {
@@ -64,6 +66,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         hasRole,
         isLoggingIn,
         isLoggingOut,
+        isLoading,
         login: handleLogin,
         logout: handleLogout,
         userInfo,

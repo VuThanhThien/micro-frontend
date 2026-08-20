@@ -35,15 +35,64 @@ const AppRoutes = () => {
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="faq" element={<Faq />} />
-          <Route path="help" element={<HelpCenter />} />
-          <Route path="profile" element={<Profile />}>
-            <Route index element={<ProfileActivity />} />
-            <Route path="information" element={<ProfileInformation />} />
-            <Route path="password" element={<ProfilePassword />} />
+          <Route
+            path="faq"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Faq />
+              </Suspense>
+            }
+          />
+          <Route
+            path="help"
+            element={
+              <Suspense fallback={<Loader />}>
+                <HelpCenter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
+            }
+          >
+            <Route
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ProfileActivity />
+                </Suspense>
+              }
+            />
+            <Route
+              path="information"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ProfileInformation />
+                </Suspense>
+              }
+            />
+            <Route
+              path="password"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ProfilePassword />
+                </Suspense>
+              }
+            />
           </Route>
           <Route path="projects" element={<Navigate to="/under-construction" replace />} />
-          <Route path="user-management" element={<UserManagement />} />
+          <Route
+            path="user-management"
+            element={
+              <Suspense fallback={<Loader />}>
+                <UserManagement />
+              </Suspense>
+            }
+          />
           <Route path="vue" element={<VueDashboard />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />

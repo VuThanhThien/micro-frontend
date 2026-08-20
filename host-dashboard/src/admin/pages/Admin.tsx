@@ -5,6 +5,7 @@ import { useSettings } from '../../core/contexts/SettingsProvider';
 import AdminDrawer from '../components/AdminDrawer';
 import { Box, Toolbar } from '@mui/material';
 import QueryWrapper from 'core/components/QueryWrapper';
+import Loader from 'core/components/Loader';
 import { useAuth } from 'remoteAuth/contexts';
 
 const AdminLayout = () => {
@@ -15,18 +16,28 @@ const AdminLayout = () => {
   const handleSettingsToggle = () => {
     setSettingsOpen(!settingsOpen);
   };
-  const { hasRole, userInfo } = useAuth();
+  const { hasRole, userInfo, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Wait until the auth session has been resolved; redirecting early while
+    // `userInfo` is still loading bounces the user back to /login on first login.
+    if (authLoading) {
+      return;
+    }
     if (!userInfo) {
       navigate(`/login`);
+      return;
     }
     //TODO: enhance RBAC later
-    if (!!userInfo && !hasRole(['Admin'])) {
+    if (!hasRole(['Admin'])) {
       navigate(`/403`);
     }
-  }, [userInfo, hasRole]);
+  }, [authLoading, userInfo, hasRole]);
+
+  if (authLoading) {
+    return <Loader />;
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>

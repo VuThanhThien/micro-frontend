@@ -53,6 +53,7 @@ declare module 'remoteAuth/contexts' {
     hasRole: (roles?: string[]) => {};
     isLoggingIn: boolean;
     isLoggingOut: boolean;
+    isLoading: boolean;
     login: (email: string, password: string) => Promise<any>;
     logout: () => Promise<any>;
     userInfo?: UserInfo;

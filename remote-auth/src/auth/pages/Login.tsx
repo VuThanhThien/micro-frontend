@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -9,19 +10,29 @@ import { Grid, Paper, Typography, Box, TextField, Button, Link } from '@mui/mate
 import { useSnackbar } from 'remoteComponents/contexts';
 
 const Login = () => {
-  const { isLoggingIn, login } = useAuth();
+  const { isLoggingIn, login, userInfo, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
   const snackbar = useSnackbar();
   const { t } = useTranslation();
 
+  // Set once the login POST succeeds. We intentionally delay navigation until the
+  // auth session (userInfo) has actually resolved: navigating to /admin while the
+  // auth context is still empty makes AdminLayout mount in an unauthenticated,
+  // loading state and bounce the user straight back to /login on first login.
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const handleLogin = (email: string, password: string) => {
     login(email, password)
-      .then(() => {
-        snackbar.success('Login success! Redirecting you to home page...');
-        navigate(`/admin`, { replace: true });
-      })
+      .then(() => setLoggedIn(true))
       .catch(() => snackbar.error(t('common.errors.unexpected.subTitle')));
   };
+
+  useEffect(() => {
+    if (loggedIn && !authLoading && userInfo) {
+      snackbar.success('Login success! Redirecting you to home page...');
+      navigate(`/admin`, { replace: true });
+    }
+  }, [loggedIn, authLoading, userInfo, navigate, snackbar]);
 
   const formik = useFormik({
     initialValues: {
