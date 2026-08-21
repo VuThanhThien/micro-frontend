@@ -1,3 +1,7 @@
+# Each service injects its per-app .env via `env_file`. The PUBLIC_URL var there
+# becomes the app's nginx `server_name` at container start (envsubst template),
+# so assigning a domain is just editing the app's .env and `docker compose up`.
+# Build-time values (VITE_*) come from the `args:` below, not from env_file.
 services:
   types:
     build:
@@ -73,9 +77,9 @@ services:
       args:
         - VITE_APP_NAME=${VITE_DASHBOARD_APP_NAME:-Micro Front-end}
         - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:8080}
-        # Remote base URLs baked into the host bundle at build time.
-        # Default to the published localhost ports; set these to Docker service
-        # names (e.g. http://remote-vue:80) when serving behind an ingress.
+        # Remote base URLs baked into the host bundle at build time. Sources
+        # (highest to lowest): shell env, the ROOT .env, then these defaults.
+        # Edit them in the root .env and rebuild the host when domains change.
         - VITE_REMOTE_COMPONENTS_URL=${VITE_REMOTE_COMPONENTS_URL:-http://localhost:3002}
         - VITE_REMOTE_AUTH_URL=${VITE_REMOTE_AUTH_URL:-http://localhost:3001}
         - VITE_REMOTE_VUE_URL=${VITE_REMOTE_VUE_URL:-http://localhost:3003}

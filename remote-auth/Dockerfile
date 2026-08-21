@@ -35,14 +35,18 @@ RUN ls -la dist/assets/
 # Production stage
 FROM --platform=linux/amd64 nginx:stable-alpine
 
+# Public domain used for nginx `server_name`; overridden at runtime by the
+# per-app `.env` (PUBLIC_URL) injected via compose `env_file`.
+ENV PUBLIC_URL=localhost
+
 # Copy built files from builder stage
 COPY --from=builder /app/remote-auth/dist /usr/share/nginx/html
 
 # Debug: List contents after copying
 RUN ls -la /usr/share/nginx/html/assets/
 
-# Copy nginx configuration
-COPY remote-auth/nginx.conf /etc/nginx/conf.d/default.conf
+# Copied as a template; the official nginx image envsubst's ${PUBLIC_URL} on start.
+COPY remote-auth/nginx.conf /etc/nginx/templates/default.conf.template
 
 # Create directory for types
 RUN mkdir -p /app/types

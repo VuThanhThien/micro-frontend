@@ -46,11 +46,15 @@ RUN pnpm install && pnpm build
 # Production stage
 FROM --platform=linux/amd64 nginx:stable-alpine
 
+# Public domain used for nginx `server_name`; overridden at runtime by the
+# per-app `.env` (PUBLIC_URL) injected via compose `env_file`.
+ENV PUBLIC_URL=localhost
+
 # Copy built files from builder stage
 COPY --from=builder /app/host-dashboard/dist /usr/share/nginx/html
 
-# Copy nginx configuration
-COPY host-dashboard/nginx.conf /etc/nginx/conf.d/default.conf
+# Copied as a template; the official nginx image envsubst's ${PUBLIC_URL} on start.
+COPY host-dashboard/nginx.conf /etc/nginx/templates/default.conf.template
 
 # Create directory for types
 RUN mkdir -p /app/types

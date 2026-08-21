@@ -14,19 +14,35 @@ production-like deployment.
 
 Each app reads `.env` / `.env.example` for:
 
-| Variable                     | Default                 | Used by                              |
-| ---------------------------- | ----------------------- | ------------------------------------ |
-| `VITE_APP_NAME`              | e.g. `Micro Front-end`  | host, remote-auth, remote-components |
-| `VITE_BASE_API_URL`          | `http://localhost:8080` | all apps                             |
-| `VITE_REMOTE_COMPONENTS_URL` | `http://localhost:3002` | host (federation remote)             |
-| `VITE_REMOTE_AUTH_URL`       | `http://localhost:3001` | host (federation remote)             |
-| `VITE_REMOTE_VUE_URL`        | `http://localhost:3003` | host (federation remote)             |
+| Variable                     | Default                 | Used by                                         |
+| ---------------------------- | ----------------------- | ----------------------------------------------- |
+| `VITE_APP_NAME`              | e.g. `Micro Front-end`  | host, remote-auth, remote-components            |
+| `VITE_BASE_API_URL`          | `http://localhost:8080` | all apps                                        |
+| `PUBLIC_URL`                 | `localhost`             | each app's nginx `server_name` (per-app `.env`) |
+| `VITE_REMOTE_COMPONENTS_URL` | `http://localhost:3002` | host (federation remote)                        |
+| `VITE_REMOTE_AUTH_URL`       | `http://localhost:3001` | host (federation remote)                        |
+| `VITE_REMOTE_VUE_URL`        | `http://localhost:3003` | host (federation remote)                        |
 
 > `VITE_REMOTE_*_URL` override the Module Federation remote base URLs baked into
 > the host bundle at build time. Defaults point at the published localhost ports.
 > For an internal deployment set them to service names (e.g.
 > `http://remote-components:80`, `http://remote-auth:80`, `http://remote-vue:80`)
 > in front of an ingress/reverse proxy.
+
+**Per-app public domains.** Each app's `.env` carries a `PUBLIC_URL`
+(default `localhost`) that becomes its **nginx `server_name`**. It is read by
+Compose via `env_file` and substituted into the nginx config at container start
+(from `nginx.conf` copied as `/etc/nginx/templates/default.conf.template`), so
+changing a domain is just editing `.env` and running `docker compose up` — no
+rebuild:
+
+```bash
+# remote-vue/.env
+PUBLIC_URL=vue.example.com
+```
+
+Only the **host** must be rebuilt when its `VITE_REMOTE_*_URL` change, because
+those are baked into the bundle at build time (see note above).
 
 Generate `.env` files from templates:
 
@@ -106,27 +122,33 @@ Stop and remove:
 docker compose down
 ```
 
-### Build args
+### Build args vs. runtime env
 
 `VITE_APP_NAME`, `VITE_BASE_API_URL`, and (for the host) `VITE_REMOTE_*_URL` are
-passed as build arguments with defaults (see `docker-compose.yml`), and each
-service also reads its own `./<app>/.env`.
+passed as **build arguments** (see `docker-compose.yml`). Each service also
+reads its own `./<app>/.env` via `env_file` — this supplies the **runtime**
+`PUBLIC_URL` used by nginx `server_name` (and `VITE_*` for process runtime).
+Build-time VITE values are never read from `env_file`.
 
-The host's remote URLs default to the published localhost ports:
+**Remote URLs live in the root `.env`** (single file that controls which domain
+each remote is fetched from). `docker compose` auto-loads `./.env` for `$VAR`
+interpolation, and `pnpm run setup-env` generates it from `./.env.example`:
 
-```bash
-VITE_REMOTE_COMPONENTS_URL=${VITE_REMOTE_COMPONENTS_URL:-http://localhost:3002}
-VITE_REMOTE_AUTH_URL=${VITE_REMOTE_AUTH_URL:-http://localhost:3001}
-VITE_REMOTE_VUE_URL=${VITE_REMOTE_VUE_URL:-http://localhost:3003}
+```
+# ./.env
+VITE_REMOTE_COMPONENTS_URL=http://localhost:3002
+VITE_REMOTE_AUTH_URL=http://localhost:3001
+VITE_REMOTE_VUE_URL=http://localhost:3003
 ```
 
-Override them to route the host to internal service names behind an ingress:
+They are **build-time** (Vite inlines them into the host bundle), so changing a
+remote domain requires rebuilding the host:
 
 ```bash
-VITE_REMOTE_COMPONENTS_URL=http://remote-components:80 \
-VITE_REMOTE_AUTH_URL=http://remote-auth:80 \
-VITE_REMOTE_VUE_URL=http://remote-vue:80 \
+# 1. edit the root .env with the deployed domains
+# 2. rebuild + restart the host
 docker compose build host-dashboard
+docker compose up -d
 ```
 
 ## 6. Docker Image Anatomy
@@ -143,7 +165,10 @@ Each app ships a two-stage `Dockerfile` + `nginx.conf`.
 **Run stage** (`nginx:stable-alpine`):
 
 1. Copies `<app>/dist` → `/usr/share/nginx/html`.
-2. Applies `nginx.conf` and exposes port 80.
+2. Copies `nginx.conf` to `/etc/nginx/templates/default.conf.template`; the
+   official nginx image envsubst's `${PUBLIC_URL}` into `server_name` at
+   container start using the runtime `PUBLIC_URL` from `env_file`.
+3. Exposes port 80 (`ENV PUBLIC_URL=localhost` is the fallback when unset).
 
 **nginx.conf** highlights:
 
@@ -161,8 +186,9 @@ server {
     }
 
     location /assets/ {
-        expires 1y;                            # long-cache fingerprinted assets
-        add_header Cache-Control "public, max-age=31536000";
+        # Revalidate on every build: 304 when unchanged, 200 with new bytes.
+        # No long (1y) cache — it served stale bundles after new deploys.
+        add_header Cache-Control "public, max-age=0, must-revalidate";
     }
 
     # host only:

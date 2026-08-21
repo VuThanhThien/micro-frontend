@@ -13,6 +13,12 @@ setup_env() {
     fi
 }
 
+# Root .env (build-time remote URLs for the host / Docker Compose)
+if [ ! -f "${PROJECT_ROOT}/.env" ] && [ -f "${PROJECT_ROOT}/.env.example" ]; then
+    echo "Creating .env file for <root>"
+    cp "${PROJECT_ROOT}/.env.example" "${PROJECT_ROOT}/.env"
+fi
+
 # Setup env files for each service
 setup_env "host-dashboard"
 setup_env "remote-auth"

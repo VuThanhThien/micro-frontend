@@ -191,8 +191,10 @@ own port. `docker-compose.yml` wires them together on a shared
 
 - Host `depends_on` all remotes + types; auth depends on components.
 - Build args inject `VITE_APP_NAME` and `VITE_BASE_API_URL`.
-- nginx serves the SPA (`try_files … /index.html`) with a long cache on
-  `/assets/` and a no-cache policy for the service worker + index.
+- nginx serves the SPA (`try_files … /index.html`) with a no-cache policy for
+  HTML, `remoteEntry.js`, and the service worker, and a revalidate-on-every-build
+  policy (`max-age=0, must-revalidate`) on `/assets/` so new deploys are picked
+  up immediately (no long 1y cache).
 
 See [Deployment Guide](deployment-guide.md) for commands.
 
